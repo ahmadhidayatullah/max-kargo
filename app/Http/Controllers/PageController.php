@@ -83,7 +83,7 @@ class PageController extends Controller
                   ->where('commodity_id', $request->commodity_id)
                   ->first();
 
-        $status       = Status::select('id')->where('name', 'm')->first();
+        $status       = Status::select('id')->where('name', 'pe')->first();
         $order_number = order_number();
         $weight       = (double)$request->input('weight');
 
@@ -211,16 +211,42 @@ class PageController extends Controller
 
     public function cost()
     {
+        $options = [
+            'origins' => Origin::select('id', 'name', 'province')->get(),
+            'destinations' => Destination::select('id', 'name', 'province')->get(),
+            'commodities' => Commodity::select('id', 'code', 'name')->get()
+        ];
       $costs = Cost::with('origin', 'destination','commodity')->orderBy('created_at','desc')->get();
       return view('pages.cost', [
         'costs'         => $costs,
-        'i'             => 1
+        'i'             => 1,
+        'options' => $options
       ]);
         // $costs = Cost::with('origin', 'destination')->get();
         //
         // return view('pages.cost', [
         //     'costs' => $costs
         // ]);
+    }
+    public function cek_cost($origin_id,$destination_id,$commodity_id,$kg)
+    {
+        $cost = Cost::where('origin_id', $origin_id)
+                  ->where('destination_id', $destination_id)
+                  ->where('commodity_id', $commodity_id)
+                  ->first();
+        
+        $result = payment_total($kg, $cost['price']['minimal'], $cost['price']['nominal'], $cost['price']['plus_45'], $cost['price']['plus_100']);
+        $html = "<h4> Biaya : ".toRupiah($result)."</h4>";
+        return $html;
+    }
+
+    public function commodity()
+    {
+        $costs = Cost::with('origin', 'destination','commodity')->orderBy('created_at','desc')->get();
+      return view('pages.commodity', [
+        'costs'         => $costs,
+        'i'             => 1
+      ]);
     }
 
     public function get_task($id)
@@ -243,7 +269,7 @@ class PageController extends Controller
           'payment_method' => payment_method($get_task->payment['method'])
       ]);
     }
-    public function print($id)
+    public function print_order($id)
     {
       $get_task = Task::find($id);
 
@@ -253,6 +279,17 @@ class PageController extends Controller
       ]);
     }
 
+    public function task(Request $request,$id)
+    {
+        $task = Task::find($id);
+        $task->status_id = '5';
+        if($task->save()){
+            return redirect('/search?q='.$task->order_number);
+        }else{
+            return redirect('/');
+        }
+
+    }
     public function abort(Request $request, $id)
     {
         $task = Task::find($id);

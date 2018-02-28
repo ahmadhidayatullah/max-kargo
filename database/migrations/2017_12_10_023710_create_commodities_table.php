@@ -17,6 +17,7 @@ class CreateCommoditiesTable extends Migration
             $table->increments('id');
             $table->string('code');
             $table->string('name');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }

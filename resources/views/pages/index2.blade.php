@@ -95,7 +95,7 @@
                                 {{-- <option value="TUNAI">TUNAI</option>
                                 <option value="BANK XYZ">BANK XYZ</option> --}}
                                 @foreach ($options['payment_methods'] as $option)
-                                    <option value="{{ $option->id }}">{{ $option->display_name }}</option>
+                            <option value="{{ $option->id }}">{{ $option->display_name }}</option>
                                 @endforeach
                             </select>
                         </div>

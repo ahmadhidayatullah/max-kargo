@@ -21,6 +21,7 @@ class CreateConfirmationsTable extends Migration
             $table->double('transfer_amount');
             $table->text('transfer_name');
             $table->string('transfer_photo');
+            $table->tinyInteger('isVerified')->default(0);
             $table->timestamps();
         });
     }

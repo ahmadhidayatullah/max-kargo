@@ -136,6 +136,7 @@
 
                 $("#origin").text(task.cost.origin.name);
                 $("#destination").text(task.cost.destination.name);
+                $("#estimate").text(task.cost.destination.estimate);
 
                 $("#commodity").text(task.commodity.name);
                 $("#weight").text(`${task.weight} Kg`);
@@ -204,10 +205,11 @@
                                 </address>
                             </div>
                             <div class="col-md-4">
-                                <h3 class="text-center"><strong id="order_number"></strong></h3>
+                                <h4 class="">Kode Resi: <strong id="order_number"></strong></h4>
                                 <p>
                                     Kota Asal: <span id="origin"></span> <br />
-                                    Kota Tujuan: <span id="destination"></span>
+                                    Kota Tujuan: <span id="destination"></span> <br />
+                                    Estimasi: <span id="estimate"></span>
                                 </p>
                             </div>
                         </div>
@@ -257,7 +259,7 @@
                                             <td class="text-right" id="cost"></td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Admin</th>
+                                            <th scope="row">Administrasi</th>
                                             <td width="1px">:</td>
                                             <td class="text-right" id="payment_admin"></td>
                                         </tr>

@@ -2,146 +2,148 @@
 
 @section('content')
 
-  <div class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
-          <h4 class="title">{{ $title }}</h4>
-          <p class="category">{{ $description }}</p>
-          <br>
-
-          <div class="card">
-            <div class="card-content">
-              <div class="toolbar">
-                <!--Here you can write extra buttons/actions for the toolbar-->
-                @if ($errors->any())
-                  <div class="alert alert-danger">
-                    <ul>
-                      @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                      @endforeach
-                    </ul>
-                  </div>
-                @endif
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h4 class="title">{{ $title }}</h4>
+        <p class="category">{{ $description }}</p>
+        <br>
+        
+        <div class="card">
+          <div class="card-content">
+            <div class="toolbar">
+              <!--Here you can write extra buttons/actions for the toolbar-->
+              @if ($errors->any())
+              <div class="alert alert-danger">
+                <ul>
+                  @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                  @endforeach
+                </ul>
               </div>
-              <form action="{{route('reports.search')}}" method="post">
-                {{csrf_field()}}
-                <input type="hidden" name="type" value="all">
-                <div class="card-content">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label>Tanggal Mulai</label>
-                        <input type="date" name="tanggal_mulai" class="form-control" required value="{{old('tanggal_mulai')}}">
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label>Tanggal Sampai</label>
-                        <input type="date" name="tanggal_sampai" class="form-control" required>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label> </label>
-                        <input type="submit" name="submit" value="Submit" class="form-control btn btn-fill btn-info">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </form>
+              @endif
             </div>
-          </div>
-          @if ($show_result == 1)
-            <div class="card">
+            <form action="{{route('reports.search')}}" method="post">
+              {{csrf_field()}}
+              <input type="hidden" name="type" value="all">
               <div class="card-content">
-                <div class="card-header">
-                  <h4 class="card-title">
-                    <div class="row">
-                      <div class="col-md-10">
-                        @if ($tanggal_mulai == $tanggal_sampai)
-                          Hasil Pencarian : <strong>{{convert_to_tanggal($tanggal_mulai)}}</strong>
-                        @else
-                          Hasil Pencarian : <strong>{{convert_to_tanggal($tanggal_mulai) . ' - ' .convert_to_tanggal($tanggal_sampai)}}</strong>
-                        @endif
-
-                      </div>
-                      <div class="col-md-2">
-                        <a href="{{route('reports.print',['type'=>'all','tanggal_mulai'=>$tanggal_mulai,'tanggal_sampai'=>$tanggal_sampai])}}" target="_blank" class="btn btn-default"><i class="ti-printer"></i> Print</a>
-                      </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Tanggal Mulai</label>
+                      <input type="date" name="tanggal_mulai" class="form-control" required value="{{old('tanggal_mulai')}}">
                     </div>
-                  </h4>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Tanggal Sampai</label>
+                      <input type="date" name="tanggal_sampai" class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label> </label>
+                      <input type="submit" name="submit" value="Submit" class="form-control btn btn-fill btn-info">
+                    </div>
+                  </div>
                 </div>
-                <div class="fresh-datatables table-responsive">
-                  <table id="datatables" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                    <thead>
-                      <tr>
-                        <th>No. </th>
-                        <th>Nama </th>
-                        <th>Nomor Resi</th>
-                        <th width="150">Jenis Barang</th>
-                        <th>Berat Barang</th>
-                        <th>Tujuan</th>
-                        <th>Nama Penerima</th>
-                        <th>Biaya</th>
-                        {{-- <th width="200">Aksi</th> --}}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @php
-                        $total_batal = 0;
-                        $total_masuk = 0;
-                      @endphp
-                      @foreach ($query as $data => $value)
-                        <?php $class = ($value->isRefund == 1) ? 'danger' : '' ?>
-                        <tr class="{{$class}}">
-                          <td>{{ $data +1 }}</td>
-                          <td>{{ $value->sender['name'] }}</td>
-                          <td>{{ $value->order_number }}</td>
-                          <td>{{ $value->commodity->name }}</td>
-                          <td>{{ $value->weight }} Kg</td>
-                          <td>{{ $value->to['address'] }}</td>
-                          <td>{{ $value->to['name'] }}</td>
-                          <?php
-                          if ($value->isRefund == 1) {
-                            $total_batal = $total_batal + $value->payment['total'];
-                          }else {
-                            $total_masuk = $total_masuk + $value->payment['total'];
-                          }
-
-                          ?>
-                          <td>{{ toRupiah($value->payment['total']) }}</td>
-
-                        </tr>
-                      @endforeach
-                    </tbody>
-                    <tfoot>
-                      <th>Total Pemasukan</th>
-                      <th>{{toRupiah($total_masuk)}}</th>
-                      <th></th>
-                      <th>Total Pembatalan</th>
-                      <th>{{toRupiah($total_batal)}}</th>
-                      @php
-                        $result = $total_masuk - $total_batal;
-                      @endphp
-                      <th></th>
-                      <th>Total</th>
-                      <th>{{toRupiah($result)}}</th>
-                    </tfoot>
-                  </table>
-                </div>
-
               </div>
-            </div>
-          @endif
+            </form>
+          </div>
         </div>
+        @if ($show_result == 1)
+        <div class="card">
+          <div class="card-content">
+            <div class="card-header">
+              <h4 class="card-title">
+                <div class="row">
+                  <div class="col-md-10">
+                    @if ($tanggal_mulai == $tanggal_sampai)
+                    Hasil Pencarian : <strong>{{convert_to_tanggal($tanggal_mulai)}}</strong>
+                    @else
+                    Hasil Pencarian : <strong>{{convert_to_tanggal($tanggal_mulai) . ' - ' .convert_to_tanggal($tanggal_sampai)}}</strong>
+                    @endif
+                    
+                  </div>
+                  <div class="col-md-2">
+                    <a href="{{route('reports.print',['type'=>'all','tanggal_mulai'=>$tanggal_mulai,'tanggal_sampai'=>$tanggal_sampai])}}" target="_blank" class="btn btn-default"><i class="ti-printer"></i> Print</a>
+                  </div>
+                </div>
+              </h4>
+            </div>
+            <div class="fresh-datatables table-responsive">
+              <table id="datatables" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>No. </th>
+                    <th>Nama </th>
+                    <th>Nomor Resi</th>
+                    <th width="150">Jenis Barang</th>
+                    <th>Berat Barang</th>
+                    <th>Tujuan</th>
+                    <th>Nama Penerima</th>
+                    <th>Biaya</th>
+                    {{-- <th width="200">Aksi</th> --}}
+                  </tr>
+                </thead>
+                <tbody>
+                  @php
+                  $total_batal = 0;
+                  $total_masuk = 0;
+                  $weight      = 0;
+                  @endphp
+                  @foreach ($query as $data => $value)
+                  <?php $class = ($value->isRefund == 1) ? 'danger' : '' ?>
+                  <tr class="{{$class}}">
+                    <td>{{ $data +1 }}</td>
+                    <td>{{ $value->sender['name'] }}</td>
+                    <td>{{ $value->order_number }}</td>
+                    <td>{{ $value->commodity->name }}</td>
+                    <td>{{ $value->weight }} Kg</td>
+                    <td>{{ $value->to['address'] }}</td>
+                    <td>{{ $value->to['name'] }}</td>
+                    <?php
+                    if ($value->isRefund == 1) {
+                      $total_batal = $total_batal + $value->payment['total'];
+                    }else {
+                      $total_masuk = $total_masuk + $value->payment['total'];
+                    }
+                    $weight = $weight + $value->weight;
+                    
+                    ?>
+                    <td>{{ toRupiah($value->payment['total']) }}</td>
+                    
+                  </tr>
+                  @endforeach
+                </tbody>
+                <tfoot>
+                  <th>Total Pemasukan</th>
+                  <th>{{toRupiah($total_masuk)}}</th>
+                  <th>Total Pembatalan</th>
+                  <th>{{toRupiah($total_batal)}}</th>
+                  @php
+                  $result = $total_masuk - $total_batal;
+                  @endphp
+                  <th>Total</th>
+                  <th>{{toRupiah($result)}}</th>
+                  <th>Total Berat</th>
+                  <th>{{$weight}} Kg</th>
+                </tfoot>
+              </table>
+            </div>
+            
+          </div>
+        </div>
+        @endif
       </div>
     </div>
   </div>
+</div>
 @endsection
 
 @section('page_script')
-  <script type="text/javascript">
+<script type="text/javascript">
   $('#datatables').DataTable({
     "pagingType": "full_numbers",
     "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
@@ -151,11 +153,11 @@
       "searchPlaceholder": "Cari Data",
     },
     "columnDefs": [
-      { "orderable": false, "searchable": false, "targets": 5 },
-      { "className": "text-center", "targets": "_all" }
+    { "orderable": false, "searchable": false, "targets": 5 },
+    { "className": "text-center", "targets": "_all" }
     ]
   });
-
+  
   $(".input-status").change(function () {
     swal({
       title: 'Apakah kamu yakin untuk mengubah status pengiriman ?',
@@ -170,15 +172,15 @@
       $(this).parent().submit();
     });
   });
-
+  
   $(".btn-show").click(function () {
     $("#isLoading").show();
     $("#viewResults").hide();
-
+    
     let self = $(this);
     let id   = self.data('id');
     let url  = document.head.querySelector('meta[name="app-url"]').content;
-
+    
     let toRupiah = (value) => {
       let rupiah = '';
       let valueRef = value.toString().split('').reverse().join('');
@@ -188,62 +190,62 @@
           rupiah += '.';
         }
       }
-
+      
       return `Rp. ${rupiah.split('').reverse().join('')},00`;
     }
-
+    
     axios.get(`${url}/api/tasks/${id}`).then(function (response) {
       let task = response.data
       let i = 1
-
+      
       $("#order_number").text(task.order_number);
       $("#senderName").text(task.sender.name);
       $("#senderAddress").text(task.sender.address);
       $("#senderPhone").text(task.sender.phone);
       $("#senderEmail").text(task.sender.email);
-
+      
       $("#toName").text(task.to.name);
       $("#toAddress").text(task.to.address);
       $("#toPhone").text(task.to.phone);
       $("#toEmail").text(task.to.email);
-
+      
       $("#origin").text(task.cost.origin.name);
       $("#destination").text(task.cost.destination.name);
-
+      
       $("#commodity").text(task.commodity.name);
       $("#weight").text(`${task.weight} Kg`);
-
+      
       $("#payment_method").text(task.payment.method);
       $("#payment_status").html((task.payment.status == 1) ? '<label><strong  class="text-success">LUNAS</strong></label>' : '<label><strong class="text-danger">BELUM LUNAS</strong></label>')
-
+      
       $("#cost").text(toRupiah(task.payment.total));
       $("#payment_admin").text(toRupiah(0));
       $("#payment_total").text(toRupiah(task.payment.total));
-
+      
       $.each(task.letters, function (key, value) {
         $("#letters").html(`<a href="${url}/file/${value}" target="_blank">Surat ${i++}</a>`)
       })
-
+      
       $(".btn-print").data("id", task.id);
-
+      
       $("#isLoading").hide();
       $("#viewResults").show();
     }).catch((error) => {
       console.log(error);
     });
   });
-
+  
   // $(".btn-print").click(function () {
-  //     let self = $(this);
-  //     let id = self.data('id');
-  //     let url = `http://max-kargo.test/prints/invoice/${id}`;
-  //     self.attr("href", url);
-  // });
-
+    //     let self = $(this);
+    //     let id = self.data('id');
+    //     let url = `http://max-kargo.test/prints/invoice/${id}`;
+    //     self.attr("href", url);
+    // });
+    
   </script>
-@endsection
-
-@section('modal')
+  @endsection
+  
+  @section('modal')
   <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -284,7 +286,7 @@
                 </p>
               </div>
             </div>
-
+            
             <div class="row">
               <div class="col-xs-12">
                 <table class="table table-bordered">
@@ -303,7 +305,7 @@
                 </table>
               </div>
             </div>
-
+            
             <div class="row">
               <div class="col-md-6">
                 <table class="table">
@@ -343,7 +345,7 @@
                 </table>
               </div>
             </div>
-
+            
             <div class="row">
               <div class="col-xs-12" id="letters"></div>
             </div>
@@ -352,4 +354,5 @@
       </div>
     </div>
   </div>
-@endsection
+  @endsection
+  

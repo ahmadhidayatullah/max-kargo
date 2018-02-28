@@ -9,7 +9,6 @@
                 <div class="col col-md-4">
                     <div class="form-group">
                         <select id="origin_id" class="form-control" name="origin_id" readonly>
-                            <option value="">--Pilih Kota Asal--</option>
                             @foreach ($options['origins'] as $option)
                                 <option value="{{ $option->id }}" {{ ($option->id == 1) ? 'selected' : '' }}>{{ $option->name }}, {{ $option->province }}</option>
                             @endforeach

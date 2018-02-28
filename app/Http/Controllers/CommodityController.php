@@ -56,12 +56,14 @@ class CommodityController extends Controller
         ->with('message', format_message('Gagal Input !','danger'));
       }
 
-      $code     = $request->code;
-      $name     = $request->name;
+      $code       = $request->code;
+      $name       = $request->name;
+      $keterangan = $request->keterangan;
 
       $commodity = Commodity::create([
         'code'      => $code,
         'name'      => $name,
+        'keterangan'=> $keterangan,
       ]);
 
       if ($commodity) {
@@ -102,8 +104,9 @@ class CommodityController extends Controller
      {
          $commodity =  Commodity::find($id);
 
-         $commodity->code = $request->code;
-         $commodity->name = $request->name;
+         $commodity->code       = $request->code;
+         $commodity->name       = $request->name;
+         $commodity->keterangan = $request->keterangan;
 
          if ($commodity->save()) {
            return redirect()->route('commodities.index')->with('message', format_message('Success update data !','success'));

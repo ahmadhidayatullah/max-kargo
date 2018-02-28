@@ -53,7 +53,7 @@
                     <tbody>
                         <tr class="text-center">
                             <td scope="row">{{ $task->commodity->name }}</td>
-                            <td>Menunggu Kurir</td>
+                            <td>{{ $task->weight }} Kg</td>
                         </tr>
                     </tbody>
                 </table>
@@ -69,12 +69,6 @@
                             <td width="1px">:</td>
                             <td><strong>{{ $payment_method->display_name }}</strong></td>
                         </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col">
-                <table class="table">
-                    <tbody>
                         <tr>
                             <th scope="row">Status Pembayaran</th>
                             <td width="1px">:</td>
@@ -83,7 +77,55 @@
                     </tbody>
                 </table>
             </div>
+            <div class="col">
+                <table class="table">
+                    <tbody>
+                        {{-- <tr>
+                            <th scope="row">Biaya Kirim</th>
+                            <td width="1px">:</td>
+                            <td>{{ toRupiah($task->payment['total']) }}</td>
+                        </tr> --}}
+                        <tr>
+                            <th scope="row">Total</th>
+                            <td width="1px">:</td>
+                            <td>{{ toRupiah($task->payment['total']) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+
+        @if ($task->payment['method'] != 'cash' && $task->payment['status'] == 0)
+            <hr>
+
+            <div class="row">
+                <div class="col">
+                    <div class="card bg-light">
+                        <div class="card-header">
+                            <strong>Petunjuk Pembayaran</strong>
+                        </div>
+                        <div class="card-body">
+                            <strong>Invoice {{ $task->order_number }}</strong> <br>
+                            Total: {{ toRupiah($task->payment['total']) }}
+                            <hr>
+                            <strong>Data Bank</strong>
+                            {!! $payment_method->description !!}
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-white bg-success">
+                        <div class="card-header">
+                            Jangan lupa konfirmasi
+                        </div>
+                        <div class="card-body">
+                            <p>Segera lakukan konfirmasi setelah Anda melakukan pembayaran. Klik <a href="{{route('confirmation')}}" target="_blank">disini</a> untuk melakukan konfirmasi melalui halaman konfirmasi.</p>
+                            <p><i>Pembayaran yang tidak dikonfirmasi tidak akan diproses!</i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
 
         <div class="row">
             <div class="col">

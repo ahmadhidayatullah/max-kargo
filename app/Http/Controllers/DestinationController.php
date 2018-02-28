@@ -47,7 +47,8 @@ class DestinationController extends Controller
       $validator = Validator::make($request->all(), [
         'code'      => 'required|unique:destinations',
         'name'      => 'required',
-        'province'  => 'required'
+        'province'  => 'required',
+        'estimate'  => 'required'
       ]);
       if ($validator->fails()) {
         return redirect()->back()
@@ -59,11 +60,13 @@ class DestinationController extends Controller
       $code     = $request->code;
       $name     = $request->name;
       $province = $request->province;
+      $estimate = $request->estimate;
 
       $destination = Destination::create([
         'code'      => $code,
         'name'      => $name,
         'province'  => $province,
+        'estimate'  => $estimate,
       ]);
 
       if ($destination) {
@@ -110,6 +113,7 @@ class DestinationController extends Controller
         $destionation->code = $request->code;
         $destionation->name = $request->name;
         $destionation->province = $request->province;
+        $destionation->estimate = $request->estimate;
 
         if ($destionation->save()) {
           return redirect()->route('destinations.index')->with('message', format_message('Success update data !','success'));

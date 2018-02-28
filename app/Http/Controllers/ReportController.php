@@ -55,6 +55,7 @@ class ReportController extends Controller
         $this->tgl_sampai = $request->tanggal_sampai.' 23:59:59';
 
         $query = Task::where('status_id', '=', 4)
+                      ->orWhere('status_id', '=', 5)
                       ->orWhere('isRefund', '=', 1)
                       ->where(function($query){
                         $query->where('created_at', '>=', $this->tgl_mulai)
@@ -66,11 +67,10 @@ class ReportController extends Controller
         $title  = ' Laporan Gabungan';
 
       }elseif ($type == 'masuk') {
-        $query = Task::where([
-          ['status_id', '=', 4],
-          ['created_at', '>=', $tanggal_mulai],
-          ['created_at', '<=', $tanggal_sampai],
-        ])->get();
+        $query = Task::where('status_id', '=', 4)
+                  ->orWhere('status_id', '=' , 5)
+                  ->where('created_at', '>=' , $tanggal_mulai)
+                  ->where('created_at', '<=' , $tanggal_sampai)->get();
 
         $view   = 'masuk';
         $title  = ' Laporan Masuk';
@@ -99,15 +99,15 @@ class ReportController extends Controller
 
     }
 
-    public function print($type,$tanggal_mulai,$tanggal_sampai)
+    public function print_order($type,$tanggal_mulai,$tanggal_sampai)
     {
       if ($type=='masuk') {
 
-        $query = Task::where([
-          ['status_id', '=', 4],
-          ['created_at', '>=', $tanggal_mulai.' 00:00:00'],
-          ['created_at', '<=', $tanggal_sampai.' 23:59:59'],
-        ])->get();
+       $query = Task::where('status_id', '=', 4)
+                  ->orWhere('status_id', '=' , 5)
+                  ->where('created_at', '>=' , $tanggal_mulai)
+                  ->where('created_at', '<=' , $tanggal_sampai)->get();
+
 
         $title = 'Laporan Pemasukan';
         $view  = 'print';
@@ -128,6 +128,7 @@ class ReportController extends Controller
         $this->tgl_sampai = $tanggal_sampai.' 23:59:59';
 
         $query = Task::where('status_id', '=', 4)
+                      ->orWhere('status_id', '=', 5)
                       ->orWhere('isRefund', '=', 1)
                       ->where(function($query){
                         $query->where('created_at', '>=', $this->tgl_mulai)

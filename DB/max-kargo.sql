@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 11, 2018 at 03:05 PM
+-- Generation Time: Feb 26, 2018 at 08:20 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -64,6 +64,7 @@ CREATE TABLE `commodities` (
   `id` int(10) UNSIGNED NOT NULL,
   `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `keterangan` text COLLATE utf8_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -72,39 +73,39 @@ CREATE TABLE `commodities` (
 -- Dumping data for table `commodities`
 --
 
-INSERT INTO `commodities` (`id`, `code`, `name`, `created_at`, `updated_at`) VALUES
-(1, '0300', 'Fish(edible), Seafood', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(2, '0301', 'Fish(edible), Seafood(excluding Caviar)', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(3, '0302', 'Seafood', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(4, '0304', 'Sea Urchin / Processed', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(5, '0305', 'Sea Urchin', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(6, '0306', 'Fish, Fish products', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(7, '0307', 'Fish(processed)', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(8, '0308', 'Fish(smoked)', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(9, '0309', 'Shellfish', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(10, '0310', 'Clams, Oysters, Scallops', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(11, '0311', 'Cockies', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(12, '0314', 'Abalone', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(13, '0315', 'Crabs, Crawfish, Lobsters', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(14, '0316', 'Crabs', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(15, '0318', 'Tilapia', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(16, '0319', 'Mahi Mahi', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(17, '0320', 'Eel', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(18, '0323', 'Tuna(fresh)', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(19, '0324', 'Fish(edible/excluding Lobsters, Scallops)', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(20, '0326', 'Fish(edible)', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(21, '0330', 'Fish Roe', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(22, '0334', 'Fish Gut (dried)', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(23, '0335', 'Frogs', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(24, '0340', 'Salmon', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(25, '0355', 'Snapper', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(26, '0356', 'Fish, Crabs, Shrimps-edible-', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(27, '0380', 'Shrimps, Prawns', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(28, '0382', 'Shrimps and/or Prawns', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(29, '0384', 'Shrimps, Prawns, Lobsters', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(30, '0385', 'Turtle', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(31, '0386', 'Lobsters', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(32, '1091', 'Snails', '2017-12-12 16:45:58', '2017-12-12 16:45:58');
+INSERT INTO `commodities` (`id`, `code`, `name`, `keterangan`, `created_at`, `updated_at`) VALUES
+(1, '0300', 'Fish(edible), Seafood', 'Fish(edible), Seafood', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(2, '0301', 'Fish(edible), Seafood(excluding Caviar)', 'Fish(edible), Seafood(excluding Caviar)', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(3, '0302', 'Seafood', 'Seafood', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(4, '0304', 'Sea Urchin / Processed', 'Sea Urchin / Processed', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(5, '0305', 'Sea Urchin', 'Sea Urchin', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(6, '0306', 'Fish, Fish products', 'Fish, Fish products', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(7, '0307', 'Fish(processed)', 'Fish, Fish products', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(8, '0308', 'Fish(smoked)', 'Fish, Fish products', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(9, '0309', 'Shellfish', 'Fish, Fish products', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(10, '0310', 'Clams, Oysters, Scallops', 'Fish, Fish products', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(11, '0311', 'Cockies', 'Fish, Fish products', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(12, '0314', 'Abalone', 'Fish, Fish products', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(13, '0315', 'Crabs, Crawfish, Lobsters', 'crabs', '2017-12-12 16:45:58', '2018-02-26 08:30:05'),
+(14, '0316', 'Crabs', 'Fish, Fish products', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(15, '0318', 'Tilapia', 'Fish, Fish products', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(16, '0319', 'Mahi Mahi', 'Fish, Fish products', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(17, '0320', 'Eel', 'Fish, Fish products', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(18, '0323', 'Tuna(fresh)', 'Fish, Fish products', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(19, '0324', 'Fish(edible/excluding Lobsters, Scallops)', 'Fish, Fish products', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(20, '0326', 'Fish(edible)', 'Fish, Fish products', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(21, '0330', 'Fish Roe', 'Fish, Fish products', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(22, '0334', 'Fish Gut (dried)', 'Fish, Fish products', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(23, '0335', 'Frogs', 'Fish, Fish products', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(24, '0340', 'Salmon', 'Fish, Fish products', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(25, '0355', 'Snapper', 'Fish, Fish products', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(26, '0356', 'Fish, Crabs, Shrimps-edible-', 'Fish, Fish products', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(27, '0380', 'Shrimps, Prawns', 'Fish, Fish products', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(28, '0382', 'Shrimps and/or Prawns', 'Fish, Fish products', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(29, '0384', 'Shrimps, Prawns, Lobsters', 'Fish, Fish products', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(30, '0385', 'Turtle', 'Fish, Fish products', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(31, '0386', 'Lobsters', 'Fish, Fish products', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(32, '1091', 'Snails', 'Fish, Fish products', '2017-12-12 16:45:58', '2017-12-12 16:45:58');
 
 -- --------------------------------------------------------
 
@@ -120,6 +121,7 @@ CREATE TABLE `confirmations` (
   `transfer_amount` double NOT NULL,
   `transfer_name` text COLLATE utf8_unicode_ci NOT NULL,
   `transfer_photo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `isVerified` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -172,6 +174,7 @@ CREATE TABLE `destinations` (
   `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `province` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `estimate` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -180,20 +183,20 @@ CREATE TABLE `destinations` (
 -- Dumping data for table `destinations`
 --
 
-INSERT INTO `destinations` (`id`, `code`, `name`, `province`, `created_at`, `updated_at`) VALUES
-(1, 'SOQ', 'SORONG', 'PAPUA BARAT', '2017-12-12 16:45:56', '2017-12-12 16:45:56'),
-(2, 'SRG', 'SEMARANG', 'JAWA TENGAH', '2017-12-12 16:45:56', '2017-12-12 16:45:56'),
-(3, 'SQG', 'SINTANG', 'KALIMANTAN BARAT', '2017-12-12 16:45:56', '2017-12-12 16:45:56'),
-(4, 'SUB', 'SURABAYA', 'JAWA TIMUR', '2017-12-12 16:45:56', '2017-12-12 16:45:56'),
-(5, 'SWQ', 'SUMBAWA', 'NUSA TENGGARA BARAT', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(6, 'SXK', 'SAUMLAKI', 'MALUKU', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(7, 'TJQ', 'TANJUNG PANDAN', 'KEPULAUAN BANGKA BELITUNG', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(8, 'TKG', 'BANDAR LAMPUNG', 'LAMPUNG', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(9, 'TMC', 'WAIKABUBAK', 'NUSA TENGGARA TIMUR', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(10, 'TNJ', 'TANJUNG PINANG', 'KEPULAUAN RIAU', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(11, 'TRK', 'TARAKAN', 'KALIMANTAN UTARA', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(12, 'TTE', 'TERNATE', 'MALUKU UTARA', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(13, 'UPG', 'MAKASSAR', 'SULAWESI SELATAN', '2017-12-12 16:45:57', '2017-12-12 16:45:57');
+INSERT INTO `destinations` (`id`, `code`, `name`, `province`, `estimate`, `created_at`, `updated_at`) VALUES
+(1, 'SOQ', 'SORONG', 'PAPUA BARAT', '2 hari', '2017-12-12 16:45:56', '2017-12-12 16:45:56'),
+(2, 'SRG', 'SEMARANG', 'JAWA TENGAH', '1 hari', '2017-12-12 16:45:56', '2017-12-12 16:45:56'),
+(3, 'SQG', 'SINTANG', 'KALIMANTAN BARAT', '2 hari', '2017-12-12 16:45:56', '2017-12-12 16:45:56'),
+(4, 'SUB', 'SURABAYA', 'JAWA TIMUR', '4 hari', '2017-12-12 16:45:56', '2017-12-12 16:45:56'),
+(5, 'SWQ', 'SUMBAWA', 'NUSA TENGGARA BARAT', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(6, 'SXK', 'SAUMLAKI', 'MALUKU', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(7, 'TJQ', 'TANJUNG PANDAN', 'KEPULAUAN BANGKA BELITUNG', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(8, 'TKG', 'BANDAR LAMPUNG', 'LAMPUNG', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(9, 'TMC', 'WAIKABUBAK', 'NUSA TENGGARA TIMUR', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(10, 'TNJ', 'TANJUNG PINANG', 'KEPULAUAN RIAU', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(11, 'TRK', 'TARAKAN', 'KALIMANTAN UTARA', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(12, 'TTE', 'TERNATE', 'MALUKU UTARA', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(13, 'UPG', 'MAKASSAR', 'SULAWESI SELATAN', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57');
 
 -- --------------------------------------------------------
 
@@ -281,7 +284,7 @@ CREATE TABLE `payment_methods` (
 
 INSERT INTO `payment_methods` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'cash', 'TUNAI', NULL, '2018-02-07 10:00:20', '2018-02-07 10:00:20'),
-(2, 'bank-xyz', 'BANK XYZ', '<p>XYZ Cab. TIMIKA<br />No. Rek. 08118012345<br />a/n Iska', '2018-02-07 10:00:20', '2018-02-07 10:00:20');
+(2, 'bank-xyz', '0242221208 (Max Royzer Pakan)', '<p>XYZ Cab. TIMIKA<br />No. Rek. 08118012345<br />a/n Iska', '2018-02-07 10:00:20', '2018-02-07 10:00:20');
 
 -- --------------------------------------------------------
 
@@ -334,7 +337,9 @@ INSERT INTO `statuses` (`id`, `name`, `display_name`, `description`, `created_at
 (1, 'm', 'Manifest', 'Barang baru didaftarkan di kantor Max Kargo asal pengiriman.', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
 (2, 'op', 'On-Process', 'Barang sedang dalam proses pengiriman/perjalanan.', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
 (3, 'ot', 'On-Transit', 'Barang sedang transit di kota tertentu.', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(4, 'd', 'Delivered', 'Barang telah sampai di kota tujuan.', '2017-12-12 16:45:57', '2017-12-12 16:45:57');
+(4, 'd', 'Delivered', 'Barang telah sampai di kota tujuan.', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(5, 'sc', 'Success', 'Barang Telah Diterima.', NULL, NULL),
+(6, 'pe', 'Pending', 'Kurir Belum mengambil barang.', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -366,11 +371,11 @@ CREATE TABLE `tasks` (
 INSERT INTO `tasks` (`id`, `order_number`, `sender`, `to`, `cost_id`, `commodity_id`, `weight`, `payment`, `status_id`, `letters`, `isRefund`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, '1518026161', '{\"name\":\"maldy\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', '{\"name\":\"testing\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', 1, 1, 100, '{\"status\":0,\"method\":\"1\",\"total\":840000,\"date\":null}', 1, '{\"letter1\":\"letters\\/1518026161\\/ro97dZf5CajtgAvJlzRvG0OINaRd5wvReWXd07aU.png\"}', 1, '2018-02-07 09:56:01', '2018-02-07 11:16:55', '2018-02-07 11:16:55'),
 (2, '1518026458', '{\"name\":\"maldy\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', '{\"name\":\"testing\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', 1, 1, 100, '{\"status\":0,\"method\":\"1\",\"total\":840000,\"date\":null}', 1, '{\"letter1\":\"letters\\/1518026458\\/i4G5OIaPG4IaNoRrxZQJYj0WHVYmX9QzPuhie1Bm.png\"}', 1, '2018-02-07 10:00:58', '2018-02-07 11:17:52', '2018-02-07 11:17:52'),
-(3, '1518028346', '{\"name\":\"maldy\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', '{\"name\":\"testing\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', 1, 1, 100, '{\"status\":\"1\",\"method\":\"1\",\"total\":840000,\"date\":null}', 1, '{\"letter1\":\"letters\\/1518028346\\/lSspFDLKuIUQC3jim6Cn2LWSqERAb0MgL48WkSg6.png\"}', 0, '2018-02-07 10:32:26', '2018-02-11 06:02:50', NULL),
+(3, '1518028346', '{\"name\":\"maldy\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', '{\"name\":\"testing\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', 1, 1, 100, '{\"status\":\"1\",\"method\":\"1\",\"total\":840000,\"date\":null}', 1, '{\"letter1\":\"letters\\/1518028346\\/lSspFDLKuIUQC3jim6Cn2LWSqERAb0MgL48WkSg6.png\"}', 0, '2018-02-07 10:32:26', '2018-02-26 09:00:01', NULL),
 (4, '1518028402', '{\"name\":\"maldy\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', '{\"name\":\"testing\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', 1, 1, 100, '{\"status\":0,\"method\":\"1\",\"total\":840000,\"date\":null}', 1, '{\"letter1\":\"letters\\/1518028402\\/36tmvLEa5Xhh4h7wdjDJXwF0TZx8WX6rY8ZLS1mg.png\"}', 1, '2018-02-07 10:33:22', '2018-02-10 07:30:07', '2018-02-10 07:30:07'),
 (5, '1518028582', '{\"name\":\"maldy\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', '{\"name\":\"testing\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', 1, 1, 100, '{\"status\":\"1\",\"method\":\"1\",\"total\":840000,\"date\":null}', 4, '{\"letter1\":\"letters\\/1518028582\\/a7iz0yahBquBGQiejdo4esxTcGGPJIEETt6RSUQu.png\"}', 0, '2018-02-07 10:36:22', '2018-02-08 06:03:50', NULL),
 (6, '1518031164', '{\"name\":\"maldy\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', '{\"name\":\"dsfds\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', 1, 1, 20, '{\"status\":0,\"method\":\"1\",\"total\":174000,\"date\":null}', 1, '{\"letter1\":\"letters\\/1518031164\\/yGvkxLKpIiUdm1d717kGECJIhBGR5gcjlSMxxLoa.png\"}', 1, '2018-02-07 11:19:24', '2018-02-07 11:20:49', '2018-02-07 11:20:49'),
-(7, '1518357659', '{\"name\":\"Sule\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', '{\"name\":\"Ahmad\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', 9, 1, 10, '{\"status\":\"1\",\"method\":\"1\",\"total\":253000,\"date\":null}', 4, '{\"letter1\":\"letters\\/1518357659\\/G2xiqUpWCSfJ3y2m20KFB9yAleFgptm0boDrSd6y.png\"}', 0, '2018-02-11 06:00:59', '2018-02-11 06:02:46', NULL),
+(7, '1518357659', '{\"name\":\"Sule\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', '{\"name\":\"Ahmad\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', 9, 1, 10, '{\"status\":\"1\",\"method\":\"1\",\"total\":253000,\"date\":null}', 4, '{\"letter1\":\"letters\\/1518357659\\/G2xiqUpWCSfJ3y2m20KFB9yAleFgptm0boDrSd6y.png\"}', 0, '2018-02-11 06:00:59', '2018-02-26 11:18:40', NULL),
 (8, '1518357676', '{\"name\":\"Sule\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', '{\"name\":\"Ahmad\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', 9, 1, 10, '{\"status\":\"1\",\"method\":\"1\",\"total\":253000,\"date\":null}', 4, '{\"letter1\":\"letters\\/1518357676\\/cQVGAmoQTp2v0wFxCyJ4gk595RQE68rqjais5CG3.png\"}', 0, '2018-02-11 06:01:16', '2018-02-11 06:02:43', NULL),
 (9, '1518357688', '{\"name\":\"Sule\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', '{\"name\":\"Ahmad\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', 9, 1, 10, '{\"status\":\"1\",\"method\":\"1\",\"total\":253000,\"date\":null}', 4, '{\"letter1\":\"letters\\/1518357688\\/D3Oa9fhVI0Z0mwmi8p1PNnOJevoqBRhOiweKIi3y.png\"}', 0, '2018-02-11 06:01:28', '2018-02-11 06:02:41', NULL),
 (10, '1518357696', '{\"name\":\"Sule\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', '{\"name\":\"Ahmad\",\"phone\":\"+628997139012\",\"email\":\"ahmadhidayatullah95@gmail.com\",\"address\":\"Jl. Wolter Monginsidi No.59, Maricaya Baru, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90141\"}', 9, 1, 10, '{\"status\":\"1\",\"method\":\"1\",\"total\":253000,\"date\":null}', 4, '{\"letter1\":\"letters\\/1518357696\\/VdriIQPyXS8KrOm5llf3oC3APMTbx3ZNXZFTXZoN.png\"}', 0, '2018-02-11 06:01:36', '2018-02-11 06:02:39', NULL);
@@ -544,7 +549,7 @@ ALTER TABLE `refunds`
 -- AUTO_INCREMENT for table `statuses`
 --
 ALTER TABLE `statuses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `tasks`
 --

@@ -2,61 +2,116 @@
 
 @section('content')
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <p class="display-4 text-center">Daftar Tarif</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p><strong>Keterangan</strong></p>
-                <ul class="list-unstyled">
-                    <li><small>* Jika pengiriman dengan berat di dibawah 10 Kg di kenakan tarif minimal.</small></li>
-                    <li><small>* Jika pengiriman dengan berat di diatas 10 Kg di kenakan tarif nominal.</small></li>
-                    <li><small>* Jika pengiriman dengan berat di diatas 45 Kg di kenakan tarif +45.</small></li>
-                    <li><small>* Jika pengiriman dengan berat di diatas 100 Kg di kenakan tarif +100.</small></li>
-                </ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col col-lg-12">
-              <table id="datatables2" class="table table-striped table-hover" cellspacing="0" width="100%" style="width:100%">
-                <thead>
-                  <tr>
-                    <th>No. </th>
-                    <th>Commodity</th>
-
-                    <th>Kota Tujuan</th>
-                    <th>Minimal (Rp)</th>
-                    <th>Nominal (Rp)</th>
-                    <th>+45 Kg </th>
-                    <th>+100 Kg </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($costs as $cost)
-                    <tr>
-                      <td>{{ $i++ }}</td>
-                      <td>{{ $cost->commodity->name }}</td>
-                      
-                      <td>{{ $cost->destination->name }}</td>
-                      <td>{{ toRupiah($cost->price['minimal']) }}</td>
-                      <td>{{ toRupiah($cost->price['nominal']) }}</td>
-                      <td>{{ toRupiah($cost->price['plus_45']) }}</td>
-                      <td>{{ toRupiah($cost->price['plus_100']) }}</td>
-                    </tr>
-                  @endforeach
-                </tbody>
-              </table>
-            </div>
-        </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <p class="display-4 text-center" id="simulasi-tarif">Simulasi Tarif</p>
     </div>
+  </div>
+  <div class="row">
+    <div class="col col-lag-6">
+      <form action="#" method="POST">
+        <div class="form-group">
+          <select id="origin_id" class="form-control" name="origin_id" readonly>
+            @foreach ($options['origins'] as $option)
+            <option value="{{ $option->id }}" {{ ($option->id == 1) ? 'selected' : '' }}>{{ $option->name }}, {{ $option->province }}</option>
+            @endforeach
+          </select>
+        </div>
+        <div class="form-group">
+          <select id="destination_id" class="form-control" name="destination_id" required>
+            <option value="">--Pilih Kota Tujuan--</option>
+            @foreach ($options['destinations'] as $option)
+            <option value="{{ $option->id }}">{{ $option->name }}, {{ $option->province }}</option>
+            @endforeach
+          </select>
+        </div>
+        <div class="row">
+          <div class="col col-lg-6">
+            <div class="form-group">
+              <select id="commodity_id" class="form-control" name="commodity_id" required>
+                <option value="">--Pilih Commodity--</option>
+                {{-- @foreach ($options['commodities'] as $option)
+                <option value="{{ $option->id }}">{{ $option->name }}</option>
+                @endforeach --}}
+              </select>
+            </div>
+          </div>
+          <div class="col col-lg-6">
+            <div class="form-group">
+              <input type="number" name="kg" class="form-control" required id="kg">
+            </div>
+          </div>
+        </div>
+        <a href="#simulasi-tarif" class="btn btn-primary btn-result">Selanjutnya</a>
+      </form>
+    </div>
+    <div class="col col-lag-6">
+      <h4>Hasil</h4>
+      <div id="result"></div>
+    </div>
+  </div>
+</div>
 
 @endsection
 @section('page-script')
-  {{-- <script src="{{ asset('js/jquery.datatables.js') }}"></script>
-  <script type="text/javascript">
-    $('#datatables2').DataTable();
-  </script> --}}
+<script type="text/javascript">
+  $(".btn-result").click(function () {
+    let destination_id = $('#destination_id').val();
+    let origin_id      = $('#origin_id').val();
+    let commodity_id   = $('#commodity_id').val();
+    let kg             = $('#kg').val();
+      
+    let url  = document.head.querySelector('meta[name="app-url"]').content;
+    
+    axios.get(`${url}/cek-cost/${origin_id}/${destination_id}/${commodity_id}/${kg}`).then(function (response) {
+      let data = response.data;
+      console.log(data);
+      $('#result').html(data);
+      
+    }).catch((error) => {
+      console.log(error);
+    });
+  });
+  
+  
+</script>
+@endsection
+@section('ajax')
+<script type="text/javascript">
+  
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  
+  $('#destination_id').on('change', function () {
+    $.ajax({
+      url       : "{{route('get_commodities')}}",
+      dataTy    : 'json',
+      type      : 'POST',
+      data      : {
+        'destination_id': $('#destination_id').val(),
+        'origin_id'     : $('#origin_id').val()
+      },
+      success : function(data) {
+        if (data != 'kosong') {
+          var commodity_id = $('#commodity_id');
+          commodity_id.empty();
+          $.each(data, function(key, value) {
+            commodity_id.append("<option value='"+ value.commodity.id +"'>" + value.commodity.name + "</option>");
+          });
+        }else {
+          $('#commodity_id').html("<option value=''>-- Commodity Belum Ada --</option>");
+        }
+        // console.log(data)
+      },
+      error: function (data) {
+        console.log('Error:', data);
+      }
+    });
+  });
+  
+</script>
 @endsection

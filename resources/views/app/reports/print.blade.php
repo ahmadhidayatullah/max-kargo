@@ -61,6 +61,9 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @php
+                  $weight = 0;
+                  @endphp
                   @foreach ($query as $data => $value)
                     <tr>
                       <td>{{ $data +1 }}</td>
@@ -72,6 +75,7 @@
                       <td>{{ $value->to['name'] }}</td>
                       <?php
                       $total = $total + $value->payment['total'];
+                      $weight = $weight + $value->weight;
                       ?>
                       <td>{{ toRupiah($value->payment['total']) }}</td>
                       {{-- <td>
@@ -86,6 +90,9 @@
                   <th>Total {{$title}} </th>
                   <th>{{toRupiah($total)}} </th>
                   <th>{{terbilang($total)}} </th>
+                  <th></th>
+                  <th>Total Berat </th>
+                  <th>{{$weight}} Kg </th>
                 </tr>
               </table>
 

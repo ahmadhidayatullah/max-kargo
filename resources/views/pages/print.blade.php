@@ -51,10 +51,11 @@
               </address>
           </div>
           <div class="col">
-              <h3 class="text-center"><strong>{{ $task->order_number }}</strong></h3>
+              <h4 class="">Kode Resi:<strong>{{ $task->order_number }}</strong></h4>
               <p>
                   Kota Asal: {{ $task->cost->origin->name }} <br />
-                  Kota Tujuan: {{ $task->cost->destination->name }}
+                  Kota Tujuan: {{ $task->cost->destination->name }} <br />
+                  Estimasi: {{ $task->cost->destination->estimate }}
               </p>
           </div>
       </div>

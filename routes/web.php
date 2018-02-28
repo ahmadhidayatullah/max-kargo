@@ -18,11 +18,14 @@ Route::get('search', 'PageController@search')->name('search');
 Route::get('payment', 'PageController@payment')->name('payment');
 Route::post('payment', 'PageController@confirmation')->name('confirmation');
 Route::get('cost', 'PageController@cost')->name('cost');
+Route::get('commodity', 'PageController@commodity')->name('commodity');
 Route::post('get-commodity', 'PageController@get_commodities')->name('get_commodities');
 Route::get('konfirmasi/{id}', 'PageController@batal')->name('konfirmasi_batal');
-Route::get('print/{id}', 'PageController@print')->name('user.print');
+Route::get('print/{id}', 'PageController@print_order')->name('user.print');
 Route::put('abort/{id}', 'PageController@abort')->name('abort');
+Route::put('task/{id}', 'PageController@task')->name('user.update.task');
 Route::get('get-task/{id}', 'PageController@get_task')->name('get.task');
+Route::get('cek-cost/{origin_id}/{destination_id}/{commodity_id}/{kg}', 'PageController@cek_cost')->name('cek.cost');
 Route::get('coba',function(){
   echo terbilang(1010101);
 });
@@ -47,6 +50,7 @@ Route::prefix('app')->middleware(['auth'])->group(function () {
     Route::prefix('tasks')->group(function () {
         Route::get('/{status_name}', 'TaskController@index')->name('tasks.index');
         Route::put('/{id}', 'TaskController@update')->name('tasks.update');
+        Route::post('/{id}', 'TaskController@update_weight')->name('tasks.update_weight');
         Route::delete('/{id}', 'TaskController@destroy')->name('tasks.destroy');
         Route::get('/email/send', 'TaskController@email')->name('tasks.email');
     });
@@ -62,10 +66,14 @@ Route::prefix('app')->middleware(['auth'])->group(function () {
         Route::get('masuk', 'ReportController@masuk')->name('reports.masuk');
         Route::get('batal', 'ReportController@batal')->name('reports.batal');
         Route::post('search','ReportController@search')->name('reports.search');
-        Route::get('print/{type}/{tanggal_mulai}/{tanggal_sampai}','ReportController@print')->name('reports.print');
+        Route::get('print/{type}/{tanggal_mulai}/{tanggal_sampai}','ReportController@print_order')->name('reports.print');
     });
     Route::prefix('users')->group(function(){
         Route::get('/', 'UserController@index')->name('users.index');
+        Route::post('/store/data', 'UserController@store')->name('users.store');
+        Route::post('/{id}', 'UserController@update')->name('users.update');
+        Route::get('/{id}', 'UserController@show')->name('users.show');
+        Route::delete('/{id}', 'UserController@destroy')->name('users.destroy');
     });
     Route::prefix('master')->group(function(){
       Route::get('/origin', 'OriginController@index')->name('origins.index');
@@ -92,8 +100,8 @@ Route::prefix('app')->middleware(['auth'])->group(function () {
       });
 
       Route::prefix('order')->group(function(){
-        Route::get('/list', 'TaskController@list')->name('orders.list');
-        Route::get('/print', 'TaskController@print')->name('orders.print');
+        Route::get('/list', 'TaskController@list_order')->name('orders.list');
+        Route::get('/print', 'TaskController@print_order')->name('orders.print');
       });
       Route::prefix('charge')->group(function(){
         Route::get('/', 'ChargeController@index')->name('charges.index');

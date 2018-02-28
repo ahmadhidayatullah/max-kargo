@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Destination extends Model
 {
     protected $fillable = [
-        'code', 'name', 'province'
+        'code', 'name', 'province','estimate'
     ];
 
     protected $hidden = ['created_at', 'updated_at'];

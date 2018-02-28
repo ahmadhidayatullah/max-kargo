@@ -12,6 +12,18 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="toolbar">
+                            @if(session('message'))
+                            {!!session('message')!!}
+                            @endif
+                            @if($errors->any())
+                            <div class="alert alert-danger alert-dismissable">
+                                <strong>Failed!</strong>
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </div>
+                            @endif
                             <!--Here you can write extra buttons/actions for the toolbar-->
                         </div>
                         
@@ -21,10 +33,10 @@
                                     <tr>
                                         <th>No. </th>
                                         <th>Nomor Resi</th>
+                                        <th>Nama</th>
+                                        <th width="150">Alamat</th>
                                         <th width="150">Jenis Barang</th>
-                                        <th>Berat Barang</th>
-                                        <th>Biaya</th>
-                                        <th width="100">Pembayaran</th>
+                                        <th width="150">Konfirmasi</th>
                                         <th width="200">Aksi</th>
                                     </tr>
                                 </thead>
@@ -33,29 +45,14 @@
                                     <tr>
                                         <td>{{ $i++ }}</td>
                                         <td>{{ $task->order_number }}</td>
+                                        <td>{{ $task->sender['name'] }}</td>
+                                        <td>{{ $task->sender['address'] }}</td>
                                         <td>{{ $task->commodity->name }}</td>
-                                        <td>{{ $task->weight }} Kg</td>
-                                        <td>{{ toRupiah($task->payment['total']) }}</td>
                                         <td>
-                                            {!! payment_status($task->payment['status'], route('tasks.update', $task->id)) !!}
+                                            <button type="button" class="btn btn-warning btn-sm btn-input" data-id="{{ $task->id }}" data-toggle="modal" data-target=".bs-example-modal-lg-2">Input Berat</button>
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-default btn-sm btn-show" data-id="{{ $task->id }}" data-toggle="modal" data-target=".bs-example-modal-lg">Lihat</button>
-                                            @if ($task->payment['status'] == 1)
-                                            <form action="{{ route('tasks.update', $task->id) }}" method="post" style="display:inline">
-                                                {{ csrf_field() }}
-                                                {{ method_field('PUT') }}
-                                                <input type="hidden" name="type" value="status">
-                                                <input type="hidden" name="status" value="op">
-                                                <button type="button" class="btn btn-info btn-sm input-status">Proses</button>
-                                            </form>
-                                            @else
-                                            <form action="{{ route('tasks.destroy', $task->id) }}" method="post" style="display:inline">
-                                                {{ csrf_field() }}
-                                                {{ method_field('DELETE') }}
-                                                <button type="button" class="btn btn-danger btn-sm btn-delete">Batalkan</button>
-                                            </form>
-                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach
@@ -87,36 +84,6 @@
             { "orderable": false, "searchable": false, "targets": 6 },
             { "className": "text-center", "targets": "_all" }
             ]
-        });
-        
-        $(".btn-payment").click(function () {
-            swal({
-                title: 'Apakah kamu yakin untuk mengubah status pembayaran ?',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonClass: 'btn btn-success btn-fill',
-                cancelButtonClass: 'btn btn-danger btn-fill',
-                confirmButtonText: 'Ya',
-                cancelButtonText: 'Tidak',
-                buttonsStyling: false
-            }).then(() => {
-                $(this).parent().submit();
-            });
-        });
-        
-        $(".input-status").click(function () {
-            swal({
-                title: 'Apakah kamu yakin untuk mengubah status pengiriman ?',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonClass: 'btn btn-success btn-fill',
-                cancelButtonClass: 'btn btn-danger btn-fill',
-                confirmButtonText: 'Ya',
-                cancelButtonText: 'Tidak',
-                buttonsStyling: false
-            }).then(() => {
-                $(this).parent().submit();
-            });
         });
         
         $(".btn-show").click(function () {
@@ -182,26 +149,22 @@
             });
         });
         
-        $(".btn-delete").click(function () {
-            swal({
-                title: 'Apakah kamu yakin untuk membatalkan pengiriman ?',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonClass: 'btn btn-success btn-fill',
-                cancelButtonClass: 'btn btn-danger btn-fill',
-                confirmButtonText: 'Ya',
-                cancelButtonText: 'Tidak',
-                buttonsStyling: false
-            }).then(() => {
-                $(this).parent().submit();
-            });
-        });
-        
         $(".btn-print").click(function () {
             let self = $(this);
             let id = self.data('id');
             let url = document.head.querySelector('meta[name="app-url"]').content;
             self.attr("href", `${url}/prints/invoice/${id}`);
+        });
+
+        $(".btn-input").click(function () {
+            let self = $(this);
+            let id = self.data('id');
+            let url = document.head.querySelector('meta[name="app-url"]').content;
+            let url_form = url+'/app/tasks/'+id;
+            console.log(id)
+            $("#id_number").val(id);
+            $("#url_form").attr("action",url_form);
+            
         });
     });
 </script>
@@ -324,4 +287,33 @@
         </div>
     </div>
 </div>
+<div class="modal fade bs-example-modal-lg-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="myModalLabel">Masukkan Berat Barang</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div id="viewResults" style="">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form class="" action="tes" method="POST" id="url_form">
+                                  {{ csrf_field() }}
+                                  <div class="form-group">
+                                    <label for="exampleInputEmail1">Berat Barang (Kg)</label>
+                                    <input type="number" name="weight" class="form-control" required>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="exampleInputPassword1"></label>
+                                    <button class="btn btn-primary" type="submit" name="submit" id="btn_submit">Proses</button>
+                                  </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

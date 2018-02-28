@@ -8,6 +8,7 @@ use App\Models\Origin;
 use App\Models\Status;
 use App\Models\Destination;
 use Illuminate\Http\Request;
+use Validator;
 use Mail;
 
 class TaskController extends Controller
@@ -32,7 +33,7 @@ class TaskController extends Controller
         ]);
     }
 
-    public function list()
+    public function list_order()
     {
       $tasks = Task::orderBy('updated_at', 'desc')->get();
 
@@ -44,7 +45,7 @@ class TaskController extends Controller
           'i'           => 1
       ]);
     }
-    public function print()
+    public function print_order()
     {
       $tasks = Task::orderBy('updated_at', 'desc')->get();
 
@@ -118,6 +119,39 @@ class TaskController extends Controller
 
             return redirect()->route('tasks.index', 'm');
         }
+    }
+
+    public function update_weight(Request $request,$id)
+    {
+        $validator = Validator::make($request->all(), [
+        'weight'      => 'required|numeric'
+      ]);
+      if ($validator->fails()) {
+        return redirect()->back()
+        ->withErrors($validator)
+        ->withInput()
+        ->with('message', format_message('Gagal Input !','danger'));
+      }
+
+    $task = Task::find($id);
+    $cost = Cost::where('id', $task->cost_id)->first();
+      $data = [
+            'weight' => $request->weight,
+            'payment' => [
+                'status' => 0,
+                'method' => $task->payment['method'],
+                'total'  => payment_total($request->weight, $cost->price['minimal'], $cost->price['nominal'], $cost->price['plus_45'], $cost->price['plus_100']),
+                'date'   => null
+            ],
+            'status_id' => '1'
+        ];
+        $update = $task->update($data);
+
+      if ($update) {
+        return redirect()->route('tasks.index', 'pe')->with('message', format_message('Berhasil masukkan berat barang !','success'));
+      }else {
+          return redirect()->route('tasks.index', 'pe')->with('message', format_message('Gagal Update !','danger'));
+      }
     }
 
     public function destroy($id)
