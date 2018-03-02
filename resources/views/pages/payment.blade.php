@@ -40,7 +40,7 @@
                     </div>
                     <div class="form-group">
                         <label for="input3">Bank Tujuan</label>
-                        <input type="text" class="form-control" id="input3" name="transfer_to" size="30" value="BANK XYZ a/n Iska - 08118012345" readonly>
+                        <input type="text" class="form-control" id="input3" name="transfer_to" size="30" value="BANK BNI a/n Max Royzer Pakan - 0242221208" readonly>
                     </div>
                     <div class="form-group">
                         <label for="input4">Jumlah Dana</label>

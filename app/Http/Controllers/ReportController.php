@@ -47,30 +47,35 @@ class ReportController extends Controller
       ]);
 
       $type = $request->type;
-      $tanggal_mulai  = $request->tanggal_mulai.' 00:00:00';
-      $tanggal_sampai = $request->tanggal_sampai.' 23:59:59';
+      $this->tgl_mulai  = $request->tanggal_mulai.' 00:00:00';
+      $this->tgl_sampai = $request->tanggal_sampai.' 23:59:59';
 
       if ($type == 'all') {
-        $this->tgl_mulai  = $request->tanggal_mulai.' 00:00:00';
-        $this->tgl_sampai = $request->tanggal_sampai.' 23:59:59';
 
-        $query = Task::where('status_id', '=', 4)
-                      ->orWhere('status_id', '=', 5)
-                      ->orWhere('isRefund', '=', 1)
-                      ->where(function($query){
-                        $query->where('created_at', '>=', $this->tgl_mulai)
-                              ->where('created_at', '<=', $this->tgl_sampai);
-                      })
-                      ->withTrashed()->get();
+        $query  = Task::where(function($query){
+            $query->where('created_at', '>=', $this->tgl_mulai);
+            $query->where('created_at', '<=', $this->tgl_sampai);
+        })
+        ->where(function($query){
+            $query->where('status_id', '=', 4);
+            $query->orWhere('status_id', '=', 5);
+            $query->orWhere('isRefund', '=', 1);
+        })
+        ->withTrashed()->get();
 
         $view   = 'index';
         $title  = ' Laporan Gabungan';
 
       }elseif ($type == 'masuk') {
-        $query = Task::where('status_id', '=', 4)
-                  ->orWhere('status_id', '=' , 5)
-                  ->where('created_at', '>=' , $tanggal_mulai)
-                  ->where('created_at', '<=' , $tanggal_sampai)->get();
+                  
+        $query  = Task::where(function($query){
+            $query->where('created_at', '>=', $this->tgl_mulai);
+            $query->where('created_at', '<=', $this->tgl_sampai);
+        })
+        ->where(function($query){
+            $query->where('status_id', '=', 4);
+            $query->orWhere('status_id', '=', 5);
+        })->get();
 
         $view   = 'masuk';
         $title  = ' Laporan Masuk';
@@ -78,8 +83,8 @@ class ReportController extends Controller
 
         $query = Task::where([
           ['isRefund', '=', 1],
-          ['created_at', '>=', $tanggal_mulai],
-          ['created_at', '<=', $tanggal_sampai],
+          ['created_at', '>=', $this->tgl_mulai],
+          ['created_at', '<=', $this->tgl_sampai],
         ])->withTrashed()->get();
 
         $view   = 'batal';
@@ -101,12 +106,20 @@ class ReportController extends Controller
 
     public function print_order($type,$tanggal_mulai,$tanggal_sampai)
     {
+
+      $this->tgl_mulai  = $request->tanggal_mulai.' 00:00:00';
+      $this->tgl_sampai = $request->tanggal_sampai.' 23:59:59';
+
       if ($type=='masuk') {
 
-       $query = Task::where('status_id', '=', 4)
-                  ->orWhere('status_id', '=' , 5)
-                  ->where('created_at', '>=' , $tanggal_mulai)
-                  ->where('created_at', '<=' , $tanggal_sampai)->get();
+       $query  = Task::where(function($query){
+            $query->where('created_at', '>=', $this->tgl_mulai);
+            $query->where('created_at', '<=', $this->tgl_sampai);
+        })
+        ->where(function($query){
+            $query->where('status_id', '=', 4);
+            $query->orWhere('status_id', '=', 5);
+        })->get();
 
 
         $title = 'Laporan Pemasukan';
@@ -116,25 +129,25 @@ class ReportController extends Controller
 
         $query = Task::where([
           ['isRefund', '=', 1],
-          ['created_at', '>=', $tanggal_mulai],
-          ['created_at', '<=', $tanggal_sampai],
+          ['created_at', '>=', $this->tgl_mulai],
+          ['created_at', '<=', $this->tgl_sampai],
         ])->withTrashed()->get();
 
         $title = 'Laporan Pembatalan';
         $view  = 'print';
 
       }elseif ($type == 'all') {
-        $this->tgl_mulai  = $tanggal_mulai.' 00:00:00';
-        $this->tgl_sampai = $tanggal_sampai.' 23:59:59';
 
-        $query = Task::where('status_id', '=', 4)
-                      ->orWhere('status_id', '=', 5)
-                      ->orWhere('isRefund', '=', 1)
-                      ->where(function($query){
-                        $query->where('created_at', '>=', $this->tgl_mulai)
-                              ->where('created_at', '<=', $this->tgl_sampai);
-                      })
-                      ->withTrashed()->get();
+        $query  = Task::where(function($query){
+            $query->where('created_at', '>=', $this->tgl_mulai);
+            $query->where('created_at', '<=', $this->tgl_sampai);
+        })
+        ->where(function($query){
+            $query->where('status_id', '=', 4);
+            $query->orWhere('status_id', '=', 5);
+            $query->orWhere('isRefund', '=', 1);
+        })
+        ->withTrashed()->get();
 
         $title = 'Laporan Pemasukan dan Pembatalan';
         $view  = 'print_all';
@@ -146,8 +159,8 @@ class ReportController extends Controller
         'title'          => $title,
         'url'            => route('reports.index'),
         'description'    => '',
-        'tanggal_mulai'  => $tanggal_mulai,
-        'tanggal_sampai' => $tanggal_sampai,
+        'tanggal_mulai'  =>$this->tgl_mulai,
+        'tanggal_sampai' => $this->tgl_sampai,
         'query'          => $query,
         'show_result'    => 1,
         'total'          => 0

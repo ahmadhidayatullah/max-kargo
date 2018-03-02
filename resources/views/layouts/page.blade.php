@@ -54,7 +54,7 @@
     </nav>
     
     <div class="jumbotron">
-        <p style="text-align:center;"><img src="{{asset('img/logo.jpg')}}" alt="" style="width:15%;"></p>
+        <p style="text-align:center;"><img src="{{asset('img/logo.png')}}" alt="" style="width:15%;"></p>
         <h1 class="text-center">JASA PENGIRIMAN BARANG TIMIKA PAPUA</h1>
         <p class="text-center">Minta penawaran, Transaksi langsung dan Beri ulasan</p>
     </div>
