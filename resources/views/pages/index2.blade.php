@@ -90,14 +90,22 @@
                     <div class="form-group row">
                         <label for="input6" class="col-sm-3 col-form-label">Metode Pembayaran</label>
                         <div class="col-sm-9">
-                            <select id="input6" class="form-control" name="payment_method">
-                                <option value="">-- Pilih Metode Pembayaran --</option>
+                            {{-- <select id="input6" class="form-control" name="payment_method">
+                                <option value="">-- Pilih Metode Pembayaran --</option> --}}
                                 {{-- <option value="TUNAI">TUNAI</option>
                                 <option value="BANK XYZ">BANK XYZ</option> --}}
-                                @foreach ($options['payment_methods'] as $option)
+                                {{-- @foreach ($options['payment_methods'] as $option)
                             <option value="{{ $option->id }}">{{ $option->display_name }}</option>
                                 @endforeach
-                            </select>
+                            </select>--}}
+                            @foreach ($options['payment_methods'] as $option) 
+                                <div class="radio"
+                                    <label><input type="radio" name="payment_method[]" value="{{ $option->id }}">{{$option->display_name}}</label>
+                                    @if ($option->name != 'cash')
+                                    <img src="{{url('img/bni.jpg')}}" style="width: 50px">
+                                    @endif
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                     {{-- <div class="form-group row">

@@ -39,10 +39,16 @@
                         </a>
                     </li>
                     <li class="">
+                        <a href="{{route('comoditytype.index')}}">
+                                <span class="sidebar-mini">CT</span>
+                                <span class="sidebar-normal">Commodity Type</span>
+                            </a>
+                    </li>
+                    <li class="">
                         <a href="{{route('commodities.index')}}">
-                            <span class="sidebar-mini">CO</span>
-                            <span class="sidebar-normal">Commodity</span>
-                        </a>
+                                <span class="sidebar-mini">CO</span>
+                                <span class="sidebar-normal">Commodity</span>
+                            </a>
                     </li>
                     <li class="">
                         <a href="{{route('costs.index')}}">
@@ -118,9 +124,7 @@
             </div>
         </li>
     </ul>
-    @endif
-    
-    @if (Auth::User()->level == "kurir")
+    @endif @if (Auth::User()->level == "kurir")
     <ul class="nav">
         <li class="{{ set_active('app.dashboard') }}">
             <a href="{{ route('app.dashboard') }}">

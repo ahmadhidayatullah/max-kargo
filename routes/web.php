@@ -84,6 +84,13 @@ Route::prefix('app')->middleware(['auth'])->group(function () {
         Route::post('/{id}', 'DestinationController@update')->name('destinations.update');
         Route::delete('/{id}', 'DestinationController@destroy')->name('destinations.destroy');
       });
+      Route::prefix('commodity-type')->group(function(){
+        Route::get('/', 'CommodityTypeController@index')->name('comoditytype.index');
+        Route::post('/store/data', 'CommodityTypeController@store')->name('comoditytype.store');
+        Route::get('/{id}', 'CommodityTypeController@show')->name('comoditytype.show');
+        Route::post('/{id}', 'CommodityTypeController@update')->name('comoditytype.update');
+        Route::delete('/{id}', 'CommodityTypeController@destroy')->name('comoditytype.destroy');
+      });
       Route::prefix('commodity')->group(function(){
         Route::get('/', 'CommodityController@index')->name('commodities.index');
         Route::post('/store/data', 'CommodityController@store')->name('commodities.store');
