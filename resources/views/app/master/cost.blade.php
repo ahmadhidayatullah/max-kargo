@@ -155,6 +155,22 @@
       $(".btn-create").click(function () {
         $("#isLoading").hide();
         $("#viewResults").show();
+          $("#commodity_type_id").change(function(){
+            let id   =  $(this).val();
+            axios.get(`${url}/app/master/cost/get-type/${id}`).then(function (response) {
+              let type = response.data
+
+              var commodity_id = $('#commodity_id');
+
+              commodity_id.empty();
+              $.each(type, function(key, value) {
+                commodity_id.append("<option value='"+ value.id +"'>" + value.name + "</option>");
+              });
+            }).catch((error) => {
+              console.log(error);
+            });
+          });
+
           let url  = document.head.querySelector('meta[name="app-url"]').content;
           let url_form = url+'/app/master/cost/store/data';
           $("#url_form").attr("action",url_form);
@@ -183,12 +199,18 @@
                                   {{ csrf_field() }}
                                   {{-- {{ method_field('PUT') }} --}}
                                   <div class="form-group">
+                                    <label for="exampleInputEmail1">Comodity Type</label>
+                                    <select class="form-control" id="commodity_type_id" name="commodity_type_id" required>
+                                      <option value="" selected>-- Pilih Comodity Type --</option>
+                                      @foreach ($commodity_types as $commodity)
+                                        <option value="{{$commodity->id}}">{{$commodity->type}}</option>
+                                      @endforeach
+                                    </select>
+                                  </div>
+                                  <div class="form-group">
                                     <label for="exampleInputEmail1">Comodity</label>
                                     <select class="form-control" id="commodity_id" name="commodity_id" required>
                                       <option value="">-- Pilih Comodity --</option>
-                                      @foreach ($commodities as $commodity)
-                                        <option value="{{$commodity->id}}">{{$commodity->name}}</option>
-                                      @endforeach
                                     </select>
                                   </div>
                                   <div class="form-group">

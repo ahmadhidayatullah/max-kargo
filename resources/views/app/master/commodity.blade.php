@@ -35,6 +35,7 @@
                                         <th>No. </th>
                                         <th>Code</th>
                                         <th width="150">Nama</th>
+                                        <th width="150">Type</th>
                                         <th width="150">keterangan</th>
                                         <th width="200">Aksi</th>
                                     </tr>
@@ -45,6 +46,7 @@
                                         <td>{{ $i++ }}</td>
                                         <td>{{ $commodity->code }}</td>
                                         <td>{{ $commodity->name }}</td>
+                                        <td>{{ $commodity->commodity_type->type }}</td>
                                         <td>{{ $commodity->keterangan }}</td>
                                         <td>
                                             <button type="button" class="btn btn-info btn-sm btn-show" data-id="{{ $commodity->id }}" data-toggle="modal" data-target=".bs-example-modal-lg">Edit</button>
@@ -146,6 +148,15 @@
                                     <label for="exampleInputEmail1">Code</label>
                                     <input type="text" class="form-control" name="code" id="code" placeholder="Code" required>
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Type</label>
+                                    <select class="form-control" id="commodity_type_id" name="commodity_type_id" required>
+                                      <option value="">-- Pilih Type --</option>
+                                      @foreach ($commodity_types as $type)
+                                        <option value="{{$type->id}}">{{$type->type}}</option>
+                                      @endforeach
+                                    </select>
+                                  </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Nama</label>
                                     <input type="text" class="form-control" name="name" id="nama" placeholder="Nama" required>

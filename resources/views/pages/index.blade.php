@@ -6,7 +6,7 @@
             {{ csrf_field() }}
             <legend>Destinasi</legend>
             <div class="row">
-                <div class="col col-md-4">
+                <div class="col col-md-3">
                     <div class="form-group">
                         <select id="origin_id" class="form-control" name="origin_id" readonly>
                             @foreach ($options['origins'] as $option)
@@ -15,7 +15,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col col-md-4">
+                <div class="col col-md-3">
                     <div class="form-group">
                         <select id="destination_id" class="form-control" name="destination_id" required>
                             <option value="">--Pilih Kota Tujuan--</option>
@@ -25,7 +25,17 @@
                         </select>
                     </div>
                 </div>
-                <div class="col col-md-4">
+                <div class="col col-md-3">
+                    <div class="form-group">
+                        <select id="commodity_type_id" class="form-control" name="commodity_type_id" required>
+                            <option value="" selected>--Pilih Type Commodity--</option>
+                            @foreach ($options['commodity_types'] as $option)
+                                <option value="{{ $option->id }}">{{ $option->type }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col col-md-3">
                     <div class="form-group">
                         <select id="commodity_id" class="form-control" name="commodity_id" required>
                             <option value="">--Pilih Commodity--</option>
@@ -53,14 +63,15 @@
     }
   });
 
-  $('#destination_id').on('change', function () {
+  $('#commodity_type_id').on('change', function () {
     $.ajax({
       url       : "{{route('get_commodities')}}",
       dataTy    : 'json',
       type      : 'POST',
       data      : {
         'destination_id': $('#destination_id').val(),
-        'origin_id'     : $('#origin_id').val()
+        'origin_id'     : $('#origin_id').val(),
+        'commodity_type_id': $('#commodity_type_id').val()
       },
       success : function(data) {
         if (data != 'kosong') {

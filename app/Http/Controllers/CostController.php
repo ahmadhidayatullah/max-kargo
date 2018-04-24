@@ -6,6 +6,7 @@ use Validator;
 use App\Models\Cost;
 use App\Models\Origin;
 use App\Models\Commodity;
+use App\Models\CommodityType;
 use App\Models\Destination;
 use Illuminate\Http\Request;
 
@@ -24,11 +25,17 @@ class CostController extends Controller
         ]);
     }
 
+    public function get_types($id)
+    {
+      return Commodity::where('commodity_type_id',$id)->get();
+    }
+
     public function index2()
     {
       $origins        = Origin::all();
       $destinations   = Destination::all();
       $commodities     = Commodity::all();
+      $commodity_types     = CommodityType::all();
       $costs = Cost::with('origin', 'destination','commodity')->orderBy('created_at','desc')->get();
       return view('app.master.cost', [
         'title'         => 'Cost',
@@ -37,6 +44,7 @@ class CostController extends Controller
         'origins'       => $origins,
         'destinations'  => $destinations,
         'commodities'   => $commodities,
+        'commodity_types' => $commodity_types,
         'costs'         => $costs,
         'i'             => 1
       ]);
@@ -63,7 +71,8 @@ class CostController extends Controller
       $validator = Validator::make($request->all(), [
         'origin_id'         => 'required|numeric',
         'destination_id'   => 'required|numeric',
-        'commodity_id'      => 'required|numeric'
+        'commodity_id'      => 'required|numeric',
+        'commodity_type_id' => 'required|numeric'
       ]);
       if ($validator->fails()) {
         return redirect()->back()
@@ -76,6 +85,7 @@ class CostController extends Controller
         'origin_id'       => $request->origin_id,
         'destination_id' => $request->destination_id,
         'commodity_id'    => $request->commodity_id,
+        'commodity_type_id'    => $request->commodity_type_id,
         'price' => [
           'minimal'   => $request->minimal,
           'nominal'   => $request->nominal,

@@ -9,6 +9,7 @@ use App\Models\Refund;
 use App\Models\Origin;
 use App\Models\Status;
 use App\Models\Commodity;
+use App\Models\CommodityType;
 use App\Models\Destination;
 use App\Models\Confirmation;
 use Illuminate\Http\Request;
@@ -24,8 +25,9 @@ class PageController extends Controller
     {
         $destination_id = $request->destination_id;
         $origin_id      = $request->origin_id;
+        $commodity_type_id = $request->commodity_type_id;
 
-        $cost = Cost::with('commodity')->where('origin_id', $origin_id)->where('destination_id', $destination_id)->get();
+        $cost = Cost::with('commodity')->where('origin_id', $origin_id)->where('destination_id', $destination_id)->where('commodity_type_id',$commodity_type_id)->get();
 
         if ($cost != '') {
           // return Commodity::select('id', 'code', 'name')->where('id', $cost->commodity_id)->get();
@@ -41,7 +43,8 @@ class PageController extends Controller
         $options = [
             'origins' => Origin::select('id', 'name', 'province')->get(),
             'destinations' => Destination::select('id', 'name', 'province')->get(),
-            'commodities' => Commodity::select('id', 'code', 'name')->get()
+            'commodities' => Commodity::select('id', 'code', 'name')->get(),
+            'commodity_types' => CommodityType::select('id', 'type')->get()
         ];
 
         return view('pages.index', [

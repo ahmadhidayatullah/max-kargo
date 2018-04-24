@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Commodity extends Model
 {
     protected $fillable = [
-        'code', 'name','keterangan'
+        'code', 'name','keterangan','commodity_type_id'
     ];
 
     protected $hidden = [
@@ -22,5 +22,9 @@ class Commodity extends Model
     public function tasks()
     {
         return $this->hasMany('App\Models\Task');
+    }
+    public function commodity_type()
+    {
+        return $this->BelongsTo('App\Models\CommodityType');
     }
 }

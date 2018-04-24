@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 01, 2018 at 02:21 AM
+-- Generation Time: Mar 09, 2018 at 12:05 PM
 -- Server version: 10.0.34-MariaDB
 -- PHP Version: 5.6.30
 
@@ -74,39 +74,17 @@ CREATE TABLE `commodities` (
 --
 
 INSERT INTO `commodities` (`id`, `code`, `name`, `keterangan`, `created_at`, `updated_at`) VALUES
-(1, '0300', 'Fish(edible), Seafood', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(2, '0301', 'Fish(edible), Seafood(excluding Caviar)', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(3, '0302', 'Seafood', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(4, '0304', 'Sea Urchin / Processed', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(5, '0305', 'Sea Urchin', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(6, '0306', 'Fish, Fish products', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(7, '0307', 'Fish(processed)', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(8, '0308', 'Fish(smoked)', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(9, '0309', 'Shellfish', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(10, '0310', 'Clams, Oysters, Scallops', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(11, '0311', 'Cockies', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(12, '0314', 'Abalone', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(13, '0315', 'Crabs, Crawfish, Lobsters', NULL, '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(14, '0316', 'Crabs', NULL, '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(15, '0318', 'Tilapia', NULL, '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(16, '0319', 'Mahi Mahi', NULL, '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(17, '0320', 'Eel', NULL, '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(18, '0323', 'Tuna(fresh)', NULL, '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(19, '0324', 'Fish(edible/excluding Lobsters, Scallops)', NULL, '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(20, '0326', 'Fish(edible)', NULL, '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(21, '0330', 'Fish Roe', NULL, '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(22, '0334', 'Fish Gut (dried)', NULL, '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(23, '0335', 'Frogs', NULL, '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(24, '0340', 'Salmon', NULL, '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(25, '0355', 'Snapper', NULL, '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(26, '0356', 'Fish, Crabs, Shrimps-edible-', NULL, '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(27, '0380', 'Shrimps, Prawns', NULL, '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(28, '0382', 'Shrimps and/or Prawns', NULL, '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(29, '0384', 'Shrimps, Prawns, Lobsters', NULL, '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(30, '0385', 'Turtle', NULL, '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(31, '0386', 'Lobsters', NULL, '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(32, '1091', 'Snails', NULL, '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
-(34, '1026', 'Benih/Bibit Ikan, Udang dll', NULL, '2018-02-18 08:25:42', '2018-02-18 08:25:42');
+(1, '0300', 'Fish(edible), Seafood', 'Yang termasuk dalam kategori ini adalah semua jenis ikan yang dapat dikonsumsi dan semua jenis seafood', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(2, '0301', 'Fish(edible), Seafood(excluding Caviar)', 'Yang termasuk dalam kategori ini adalah semua jenis ikan yang dapat dikonsumsi dan semua jenis seafood keculai kaviar', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(3, '0302', 'Seafood', 'Yang termasuk dalam kategori ini adalah semua jenis seafood', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(4, '0304', 'Sea Urchin / Processed', 'Yang termasuk dalam kategori ini adalah bulu babi atau bulu babi yang sudah di proses', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(6, '0306', 'Fish, Fish products', 'Yang termasuk dalam kategori ini adalah semua jenis ikan dan produk olahan dari ikan', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(8, '0308', 'Fish(smoked)', 'Yang termasuk dalam kategori ini adalah ikan yang sudah diolah dengan cara diasapi', '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
+(13, '0315', 'Crabs, Crawfish, Lobsters', 'Yang termasuk dalam kategori ini adalah semua jenis kepiting, lobster air tawar dan lobster', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(20, '0326', 'Fish(edible)', 'Yang termasuk dalam kategori ini adalah Semua jenis ikan yang dapat di konsumsi', '2017-12-12 16:45:58', '2018-03-02 07:53:12'),
+(26, '0356', 'Fish, Crabs, Shrimps-edible-', 'Yang termasuk dalam kategori ini adalah semua jenis ikan, kepiting dan udang yang dapat dikonsumsi', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(28, '0382', 'Shrimps and/or Prawns', 'Yang termasuk dalam kategori ini adalah semua jenis udang baik yang besar maupun yang kecil', '2017-12-12 16:45:58', '2017-12-12 16:45:58'),
+(34, '1026', 'Benih/Bibit Ikan, Udang dll', 'Yang termasuk dalam kategori ini adalah benih/bibit ikan dan udang, dll', '2018-02-18 08:25:42', '2018-03-02 07:51:31');
 
 -- --------------------------------------------------------
 
@@ -122,7 +100,7 @@ CREATE TABLE `confirmations` (
   `transfer_amount` double NOT NULL,
   `transfer_name` text COLLATE utf8_unicode_ci NOT NULL,
   `transfer_photo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `isVerfied` tinyint(1) NOT NULL DEFAULT '0',
+  `isVerified` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -131,8 +109,9 @@ CREATE TABLE `confirmations` (
 -- Dumping data for table `confirmations`
 --
 
-INSERT INTO `confirmations` (`id`, `order_number`, `transfer_date`, `transfer_to`, `transfer_amount`, `transfer_name`, `transfer_photo`, `isVerfied`, `created_at`, `updated_at`) VALUES
-(1, '1519010460', '2018-02-19', 'BANK XYZ a/n Iska - 08118012345', 2685000, 'Maldy', 'confirmations/1519010460/KpPEOLG9rMKXlrBGmruOTBE98l0A8TFqdTCUeFI6.jpeg', 0, '2018-02-18 20:23:17', '2018-02-18 20:23:17');
+INSERT INTO `confirmations` (`id`, `order_number`, `transfer_date`, `transfer_to`, `transfer_amount`, `transfer_name`, `transfer_photo`, `isVerified`, `created_at`, `updated_at`) VALUES
+(1, '1519010460', '2018-02-19', 'BANK XYZ a/n Iska - 08118012345', 2685000, 'Maldy', 'confirmations/1519010460/KpPEOLG9rMKXlrBGmruOTBE98l0A8TFqdTCUeFI6.jpeg', 1, '2018-02-18 20:23:17', '2018-03-02 08:59:38'),
+(2, '1519998636', '2018-03-02', 'BANK XYZ a/n Iska - 08118012345', 2161500, 'Maldy', 'confirmations/1519998636/n9lNaI2hv3AtZJoyIUNoQScKcB5rTX0ayRouiAVu.jpeg', 1, '2018-03-02 08:22:37', '2018-03-02 08:51:19');
 
 -- --------------------------------------------------------
 
@@ -169,7 +148,6 @@ INSERT INTO `costs` (`id`, `origin_id`, `destination_id`, `commodity_id`, `price
 (11, 1, 11, 1, '{\"minimal\":245000,\"nominal\":24500,\"plus_45\":24200,\"plus_100\":24000}', 0.9, '2017-12-12 16:45:59', '2017-12-12 16:45:59'),
 (12, 1, 12, 1, '{\"minimal\":246000,\"nominal\":24600,\"plus_45\":24300,\"plus_100\":24100}', 0.9, '2017-12-12 16:45:59', '2017-12-12 16:45:59'),
 (13, 1, 13, 1, '{\"minimal\":136000,\"nominal\":13600,\"plus_45\":13300,\"plus_100\":13100}', 0.9, '2017-12-12 16:45:59', '2017-12-12 16:45:59'),
-(16, 1, 3, 5, '{\"minimal\":\"200000\",\"nominal\":\"20000\",\"plus_45\":\"2000\",\"plus_100\":\"2000\"}', 0.9, '2018-02-03 08:52:17', '2018-02-03 09:39:09'),
 (29, 1, 13, 2, '{\"minimal\":\"136000\",\"nominal\":\"13600\",\"plus_45\":\"13300\",\"plus_100\":\"13100\"}', 0.9, '2018-02-17 10:34:05', '2018-02-17 10:34:05'),
 (30, 1, 12, 2, '{\"minimal\":\"246000\",\"nominal\":\"24600\",\"plus_45\":\"24300\",\"plus_100\":\"24100\"}', 0.9, '2018-02-17 10:35:00', '2018-02-17 10:35:00'),
 (31, 1, 11, 2, '{\"minimal\":\"245000\",\"nominal\":\"24500\",\"plus_45\":\"24200\",\"plus_100\":\"24000\"}', 0.9, '2018-02-17 10:36:27', '2018-02-17 10:36:27'),
@@ -225,7 +203,6 @@ INSERT INTO `costs` (`id`, `origin_id`, `destination_id`, `commodity_id`, `price
 (81, 1, 13, 8, '{\"minimal\":\"136000\",\"nominal\":\"13600\",\"plus_45\":\"13300\",\"plus_100\":\"13100\"}', 0.9, '2018-02-17 23:55:02', '2018-02-17 23:57:27'),
 (82, 1, 12, 8, '{\"minimal\":\"246000\",\"nominal\":\"24600\",\"plus_45\":\"24300\",\"plus_100\":\"24100\"}', 0.9, '2018-02-17 23:58:15', '2018-02-17 23:58:15'),
 (83, 1, 11, 8, '{\"minimal\":\"245000\",\"nominal\":\"24500\",\"plus_45\":\"24200\",\"plus_100\":\"24000\"}', 0.9, '2018-02-17 23:59:06', '2018-02-17 23:59:06'),
-(84, 1, 10, 7, '{\"minimal\":\"205000\",\"nominal\":\"20500\",\"plus_45\":\"20200\",\"plus_100\":\"20000\"}', 0.9, '2018-02-18 00:00:15', '2018-02-18 00:00:15'),
 (85, 1, 9, 8, '{\"minimal\":\"253000\",\"nominal\":\"25300\",\"plus_45\":\"25000\",\"plus_100\":\"24800\"}', 0.9, '2018-02-18 00:01:25', '2018-02-18 00:01:25'),
 (86, 1, 8, 8, '{\"minimal\":\"157000\",\"nominal\":\"15700\",\"plus_45\":\"15400\",\"plus_100\":\"15100\"}', 0.9, '2018-02-18 00:02:10', '2018-02-18 00:02:10'),
 (87, 1, 7, 8, '{\"minimal\":\"171000\",\"nominal\":\"17100\",\"plus_45\":\"16800\",\"plus_100\":\"16600\"}', 0.9, '2018-02-18 00:03:00', '2018-02-18 00:03:00'),
@@ -322,19 +299,19 @@ CREATE TABLE `destinations` (
 --
 
 INSERT INTO `destinations` (`id`, `code`, `name`, `province`, `estimate`, `created_at`, `updated_at`) VALUES
-(1, 'SOQ', 'SORONG', 'PAPUA BARAT', NULL, '2017-12-12 16:45:56', '2017-12-12 16:45:56'),
-(2, 'SRG', 'SEMARANG', 'JAWA TENGAH', NULL, '2017-12-12 16:45:56', '2017-12-12 16:45:56'),
-(3, 'SQG', 'SINTANG', 'KALIMANTAN BARAT', NULL, '2017-12-12 16:45:56', '2017-12-12 16:45:56'),
-(4, 'SUB', 'SURABAYA', 'JAWA TIMUR', NULL, '2017-12-12 16:45:56', '2017-12-12 16:45:56'),
-(5, 'SWQ', 'SUMBAWA', 'NUSA TENGGARA BARAT', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(6, 'SXK', 'SAUMLAKI', 'MALUKU', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(7, 'TJQ', 'TANJUNG PANDAN', 'KEPULAUAN BANGKA BELITUNG', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(8, 'TKG', 'BANDAR LAMPUNG', 'LAMPUNG', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(9, 'TMC', 'WAIKABUBAK', 'NUSA TENGGARA TIMUR', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(10, 'TNJ', 'TANJUNG PINANG', 'KEPULAUAN RIAU', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(11, 'TRK', 'TARAKAN', 'KALIMANTAN UTARA', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(12, 'TTE', 'TERNATE', 'MALUKU UTARA', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57'),
-(13, 'UPG', 'MAKASSAR', 'SULAWESI SELATAN', NULL, '2017-12-12 16:45:57', '2017-12-12 16:45:57');
+(1, 'SOQ', 'SORONG', 'PAPUA BARAT', '1 Hari', '2017-12-12 16:45:56', '2018-03-02 07:37:57'),
+(2, 'SRG', 'SEMARANG', 'JAWA TENGAH', '1 Hari', '2017-12-12 16:45:56', '2017-12-12 16:45:56'),
+(3, 'SQG', 'SINTANG', 'KALIMANTAN BARAT', '2 hari', '2017-12-12 16:45:56', '2017-12-12 16:45:56'),
+(4, 'SUB', 'SURABAYA', 'JAWA TIMUR', '1 Hari', '2017-12-12 16:45:56', '2017-12-12 16:45:56'),
+(5, 'SWQ', 'SUMBAWA', 'NUSA TENGGARA BARAT', '2 Hari', '2017-12-12 16:45:57', '2018-03-02 07:19:47'),
+(6, 'SXK', 'SAUMLAKI', 'MALUKU', '2 Hari', '2017-12-12 16:45:57', '2018-03-02 07:20:19'),
+(7, 'TJQ', 'TANJUNG PANDAN', 'KEPULAUAN BANGKA BELITUNG', '2 Hari', '2017-12-12 16:45:57', '2018-03-02 07:21:29'),
+(8, 'TKG', 'BANDAR LAMPUNG', 'LAMPUNG', '1 Hari', '2017-12-12 16:45:57', '2018-03-02 07:22:35'),
+(9, 'TMC', 'WAIKABUBAK', 'NUSA TENGGARA TIMUR', '1 Hari', '2017-12-12 16:45:57', '2018-03-02 07:23:23'),
+(10, 'TNJ', 'TANJUNG PINANG', 'KEPULAUAN RIAU', '2 Hari', '2017-12-12 16:45:57', '2018-03-02 07:28:18'),
+(11, 'TRK', 'TARAKAN', 'KALIMANTAN UTARA', '2 Hari', '2017-12-12 16:45:57', '2018-03-02 07:30:27'),
+(12, 'TTE', 'TERNATE', 'MALUKU UTARA', '2 Hari', '2017-12-12 16:45:57', '2018-03-02 07:37:04'),
+(13, 'UPG', 'MAKASSAR', 'SULAWESI SELATAN', '1 Hari', '2017-12-12 16:45:57', '2018-03-02 07:37:21');
 
 -- --------------------------------------------------------
 
@@ -422,7 +399,7 @@ CREATE TABLE `payment_methods` (
 
 INSERT INTO `payment_methods` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'cash', 'TUNAI', NULL, '2018-02-07 10:00:20', '2018-02-07 10:00:20'),
-(2, 'bank-xyz', 'BANK XYZ', '<p>XYZ Cab. TIMIKA<br />No. Rek. 08118012345<br />a/n Iska', '2018-02-07 10:00:20', '2018-02-07 10:00:20');
+(2, 'BANK-BNI', 'BAnk BNI 0242221208 (Max Royzer Pakan)', '<p>XYZ Cab. TIMIKA<br />No. Rek. 08118012345<br />a/n Iska', '2018-02-07 10:00:20', '2018-02-07 10:00:20');
 
 -- --------------------------------------------------------
 
@@ -452,7 +429,8 @@ INSERT INTO `refunds` (`id`, `task_id`, `method`, `nomor_rekening`, `charge`, `i
 (3, 6, 'transfer', '12345', '10000', 0, '2018-02-07 11:20:46', '2018-02-10 07:20:58', NULL),
 (4, 4, 'tunai', NULL, '10000', 0, '2018-02-10 07:30:02', '2018-02-10 07:30:02', NULL),
 (5, 3, 'tunai', NULL, '0', 1, '2018-02-11 08:00:11', '2018-02-11 08:02:07', NULL),
-(6, 13, 'tunai', NULL, '0', 1, '2018-02-12 18:49:45', '2018-02-12 18:49:59', NULL);
+(6, 13, 'tunai', NULL, '0', 1, '2018-02-12 18:49:45', '2018-02-12 18:49:59', NULL),
+(7, 22, 'transfer', '09876578 Bank BRI', '0', 1, '2018-03-02 08:29:10', '2018-03-02 08:34:30', NULL);
 
 -- --------------------------------------------------------
 
@@ -527,7 +505,11 @@ INSERT INTO `tasks` (`id`, `order_number`, `sender`, `to`, `cost_id`, `commodity
 (18, '1518966903', '{\"name\":\"alden\",\"phone\":\"+6208525004100\",\"email\":\"manguma108@gmail.com\",\"address\":\"timika\"}', '{\"name\":\"obed\",\"phone\":\"+62081250041000\",\"email\":\"maldy@yahoo.com\",\"address\":\"Makassar\"}', 120, 26, 150, '{\"status\":\"1\",\"method\":\"2\",\"total\":1965000,\"date\":null}', 1, '{\"letter1\":\"letters\\/1518966903\\/NE4ulyhtfsDLVcKYzZhbOSWIL3tMTG35qeygAYVW.pdf\"}', 0, '2018-02-18 08:15:04', '2018-02-18 08:23:21', NULL),
 (19, '1519010437', '{\"name\":\"Maldy\",\"phone\":\"+6208525004100\",\"email\":\"manguma108@gmail.com\",\"address\":\"Timika\"}', '{\"name\":\"iska\",\"phone\":\"+62081250041000\",\"email\":\"manguma108@gmail.com\",\"address\":\"makassar\"}', 13, 1, 205, '{\"status\":\"1\",\"method\":\"1\",\"total\":2685500,\"date\":null}', 1, '{\"letter1\":\"letters\\/1519010437\\/oQqp02cOq551Qvo4pX0IUaZtgL35lv7gbhbI53m2.pdf\"}', 0, '2018-02-18 20:20:38', '2018-02-18 21:50:16', NULL),
 (20, '1519010460', '{\"name\":\"Maldy\",\"phone\":\"+6208525004100\",\"email\":\"manguma108@gmail.com\",\"address\":\"Timika\"}', '{\"name\":\"iska\",\"phone\":\"+62081250041000\",\"email\":\"manguma108@gmail.com\",\"address\":\"makassar\"}', 13, 1, 205, '{\"status\":\"1\",\"method\":\"2\",\"total\":2685500,\"date\":null}', 4, '{\"letter1\":\"letters\\/1519010460\\/eJgxOOQvO19beq0KMaMN9zydBitLnC6jgL8KdE10.pdf\"}', 0, '2018-02-18 20:21:00', '2018-02-18 20:25:35', NULL),
-(21, '1519014589', '{\"name\":\"Maldy\",\"phone\":\"+628525004100\",\"email\":\"manguma108@gmail.com\",\"address\":\"Timika\"}', '{\"name\":\"iska\",\"phone\":\"+6285223408017\",\"email\":\"manguma108@gmail.com\",\"address\":\"Makassar\"}', 42, 3, 200, '{\"status\":\"1\",\"method\":\"1\",\"total\":2620000,\"date\":null}', 4, '{\"letter1\":\"letters\\/1519014589\\/fzkOF2kJUnt8M9gOg7uLFLNEvkJOAoySSsdw5suc.pdf\"}', 0, '2018-02-18 21:29:49', '2018-02-18 21:40:14', NULL);
+(21, '1519014589', '{\"name\":\"Maldy\",\"phone\":\"+628525004100\",\"email\":\"manguma108@gmail.com\",\"address\":\"Timika\"}', '{\"name\":\"iska\",\"phone\":\"+6285223408017\",\"email\":\"manguma108@gmail.com\",\"address\":\"Makassar\"}', 42, 3, 200, '{\"status\":\"1\",\"method\":\"1\",\"total\":2620000,\"date\":null}', 5, '{\"letter1\":\"letters\\/1519014589\\/fzkOF2kJUnt8M9gOg7uLFLNEvkJOAoySSsdw5suc.pdf\"}', 0, '2018-02-18 21:29:49', '2018-03-02 08:30:15', NULL),
+(22, '1519998636', '{\"name\":\"Maldy\",\"phone\":\"+6285223408017\",\"email\":\"manguma108@gmail.com\",\"address\":\"Timika\"}', '{\"name\":\"Manguma\",\"phone\":\"+6281242770047\",\"email\":\"maldymanguma@gmail.com\",\"address\":\"Makassar\"}', 146, 20, 165, '{\"status\":\"1\",\"method\":\"2\",\"total\":2161500,\"date\":null}', 1, '{\"letter1\":\"letters\\/1519998636\\/RBQFiNGUE4JFXqfpUQB2yhzf3uu7Cb7UZNBGgZnb.pdf\"}', 1, '2018-03-02 06:50:36', '2018-03-02 08:29:14', '2018-03-02 08:29:14'),
+(23, '1520005123', '{\"name\":\"Manguma\",\"phone\":\"+628525004100\",\"email\":\"manguma108@gmail.com\",\"address\":\"Timika\"}', '{\"name\":\"alden\",\"phone\":\"+6281250041000\",\"email\":\"alden@yahoo.com\",\"address\":\"Makassar\"}', 146, 20, 150, '{\"status\":\"1\",\"method\":\"1\",\"total\":1965000,\"date\":null}', 5, '{\"letter1\":\"letters\\/1520005123\\/uHQROif42GoRmiT917bOnvo3E4V09JMl4CuFHlYG.pdf\"}', 0, '2018-03-02 08:38:43', '2018-03-03 01:14:56', NULL),
+(24, '1520063592', '{\"name\":\"alden\",\"phone\":\"+628525004100\",\"email\":\"manguma108@gmail.com\",\"address\":\"Timika\"}', '{\"name\":\"maldy\",\"phone\":\"+6281242770047\",\"email\":\"manguma@gmail.com\",\"address\":\"Makassar\"}', 146, 20, 200, '{\"status\":\"1\",\"method\":\"1\",\"total\":2620000,\"date\":null}', 1, '{\"letter1\":\"letters\\/1520063592\\/CiIoSwVIbKV2ODyOuUtQ2NZfV0M2azURZZ4r60Iu.pdf\"}', 0, '2018-03-03 00:53:12', '2018-03-03 00:54:51', NULL),
+(25, '1520065086', '{\"name\":\"Maldy\",\"phone\":\"+628525004100\",\"email\":\"manguma108@gmail.com\",\"address\":\"Timika\"}', '{\"name\":\"alden\",\"phone\":\"+6281250041000\",\"email\":\"alden@yahoo.com\",\"address\":\"Ternate\"}', 121, 26, 100, '{\"status\":0,\"method\":\"1\",\"total\":2430000,\"date\":null}', 1, '{\"letter1\":\"letters\\/1520065086\\/El7dQ5adBE4VOtsrFRzlIGOv1NIVHdr7qPF3jTBj.pdf\"}', 0, '2018-03-03 01:18:06', '2018-03-03 01:19:44', NULL);
 
 -- --------------------------------------------------------
 
@@ -554,8 +536,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `address`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin@admin.com', '$2y$10$bc2fPvrijJstqiWpqhhMU.mIMQ9QTVAHRSNqOT0CEClF8.MLb5.1O', '08997139012', 'btp', 'master', 'Le4IW5RChLRK4YYWmc4LFoTNRcCFrDap6D2t3QE50oumC7k7hVbnqQXMAQbo', NULL, NULL),
-(2, 'Admin 1 Max Kargo', 'admin@max-kargo.com', '$2y$10$hdVXYbpkwquKiG3l2VzDvOyxmlVSsEl52LxVCZqNNhqyoZc91Ra9O', '085223408017', 'telkomas', 'master', 'phb65FeY1jaeqtN4t1jicP8xvoAEy9HcmduoAOT5V6MOtYSlewBKh4UwO4Zk', '2018-01-23 06:11:35', '2018-01-23 06:11:35'),
-(3, 'Maldy', 'maldy@gmail.com', '$2y$10$iRqpZ1dyX61hPH0Nt8.r0.oi3WnLEH88FhjqxGn27.3TH9yusa3ii', '1234', 'Telkomas', 'kurir', NULL, '2018-02-28 12:20:06', '2018-02-28 12:20:06');
+(2, 'Admin 1 Max Kargo', 'admin@max-kargo.com', '$2y$10$hdVXYbpkwquKiG3l2VzDvOyxmlVSsEl52LxVCZqNNhqyoZc91Ra9O', '085223408017', 'telkomas', 'master', 'QvpLJzmNrGsnit3WdsFLcDs1JeqF2RtHMF0Bfnwy0ncGCkb1z1jNbdrDC6Ix', '2018-01-23 06:11:35', '2018-01-23 06:11:35'),
+(3, 'Maldy', 'maldy@gmail.com', '$2y$10$iRqpZ1dyX61hPH0Nt8.r0.oi3WnLEH88FhjqxGn27.3TH9yusa3ii', '1234', 'Telkomas', 'kurir', 'DWGsURJJqlJwbbNTPOdkMsIY3FC2pjgAQqzzeQOxVl9ikoepT3X7NacBnj65', '2018-02-28 12:20:06', '2018-02-28 12:20:06'),
+(4, 'Budi', 'budi@gmail.com', '$2y$10$xXSszda4AEpiZT1Y/ioTP.wqbVFJK.lqQJ6RG1aXN3bCZEe1rD5Ke', '085250041000', 'Timika', 'kurir', 'DAlkKQcfTZ4ZejVrBLtXyfAyQJZp5QHqtm6DWCl5U1CZQ4ykHdEZc3h0BoeM', '2018-03-02 07:00:21', '2018-03-02 07:00:21');
 
 --
 -- Indexes for dumped tables
@@ -661,13 +644,13 @@ ALTER TABLE `charges`
 -- AUTO_INCREMENT for table `commodities`
 --
 ALTER TABLE `commodities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `confirmations`
 --
 ALTER TABLE `confirmations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `costs`
@@ -703,7 +686,7 @@ ALTER TABLE `payment_methods`
 -- AUTO_INCREMENT for table `refunds`
 --
 ALTER TABLE `refunds`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `statuses`
@@ -715,13 +698,13 @@ ALTER TABLE `statuses`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

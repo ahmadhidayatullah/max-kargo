@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Commodity;
+use App\Models\CommodityType;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -17,13 +18,15 @@ class CommodityController extends Controller
      */
     public function index()
     {
-      $commodities = Commodity::orderBy('created_at','desc')->get();
+      $commodities = Commodity::with('commodity_type')->orderBy('created_at','desc')->get();
+      $commodity_types = CommodityType::all();
       return view('app.master.commodity', [
         'title'       => 'Commodity',
         'url'         => route('commodities.index'),
         'description' => '',
         'commodities'     => $commodities,
-        'i'           => 1
+        'i'           => 1,
+        'commodity_types' => $commodity_types
       ]);
     }
 
@@ -56,14 +59,16 @@ class CommodityController extends Controller
         ->with('message', format_message('Gagal Input !','danger'));
       }
 
-      $code       = $request->code;
-      $name       = $request->name;
-      $keterangan = $request->keterangan;
+      $code              = $request->code;
+      $name              = $request->name;
+      $keterangan        = $request->keterangan;
+      $commodity_type_id = $request->commodity_type_id;
 
       $commodity = Commodity::create([
-        'code'      => $code,
-        'name'      => $name,
-        'keterangan'=> $keterangan,
+        'code'              => $code,
+        'name'              => $name,
+        'keterangan'        => $keterangan,
+        'commodity_type_id' => $commodity_type_id
       ]);
 
       if ($commodity) {
@@ -80,6 +85,11 @@ class CommodityController extends Controller
     public function show($id)
     {
         return Commodity::where('id',$id)->get();
+    }
+
+    public function get_commodity_types()
+    {
+        return \App\Models\CommodityType::all();
     }
 
     /**

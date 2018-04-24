@@ -87,6 +87,7 @@ Route::prefix('app')->middleware(['auth'])->group(function () {
       Route::prefix('commodity')->group(function(){
         Route::get('/', 'CommodityController@index')->name('commodities.index');
         Route::post('/store/data', 'CommodityController@store')->name('commodities.store');
+        Route::get('/types', 'CommodityController@get_commodity_types')->name('commodities.types');
         Route::get('/{id}', 'CommodityController@show')->name('commodities.show');
         Route::post('/{id}', 'CommodityController@update')->name('commodities.update');
         Route::delete('/{id}', 'CommodityController@destroy')->name('commodities.destroy');
@@ -95,6 +96,7 @@ Route::prefix('app')->middleware(['auth'])->group(function () {
         Route::get('/', 'CostController@index2')->name('costs.index');
         Route::post('/store/data', 'CostController@store')->name('costs.store');
         Route::get('/{id}', 'CostController@show')->name('costs.show');
+        Route::get('/get-type/{id}', 'CostController@get_types')->name('costs.get_types');
         Route::post('/{id}', 'CostController@update')->name('costs.update');
         Route::delete('/{id}', 'CostController@destroy')->name('costs.destroy');
       });
