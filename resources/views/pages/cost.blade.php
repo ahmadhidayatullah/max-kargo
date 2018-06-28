@@ -26,6 +26,14 @@
             @endforeach
           </select>
         </div>
+        <div class="form-group">
+          <select id="commodity_type_id" class="form-control" name="commodity_type_id" required>
+              <option value="" selected>--Pilih Commodity Type--</option>
+            @foreach ($options['commoditiTypes'] as $option)
+            <option value="{{ $option->id }}">{{ $option->type }}</option>
+            @endforeach
+          </select>
+        </div>
         <div class="row">
           <div class="col col-lg-6">
             <div class="form-group">
@@ -86,14 +94,15 @@
     }
   });
   
-  $('#destination_id').on('change', function () {
+  $('#commodity_type_id').on('change', function () {
     $.ajax({
       url       : "{{route('get_commodities')}}",
       dataTy    : 'json',
       type      : 'POST',
       data      : {
         'destination_id': $('#destination_id').val(),
-        'origin_id'     : $('#origin_id').val()
+        'origin_id'     : $('#origin_id').val(),
+        'commodity_type_id'     : $('#commodity_type_id').val()
       },
       success : function(data) {
         if (data != 'kosong') {

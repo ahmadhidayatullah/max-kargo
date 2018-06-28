@@ -30,7 +30,7 @@ class Cost extends Model
     {
         return $this->belongsTo('App\Models\Commodity');
     }
-
+    
     public function tasks()
     {
         return $this->hasMany('App\Models\Task');

@@ -217,7 +217,8 @@ class PageController extends Controller
         $options = [
             'origins' => Origin::select('id', 'name', 'province')->get(),
             'destinations' => Destination::select('id', 'name', 'province')->get(),
-            'commodities' => Commodity::select('id', 'code', 'name')->get()
+            'commodities' => Commodity::select('id', 'code', 'name')->get(),
+            'commoditiTypes' => CommodityType::select('id', 'type')->get()
         ];
       $costs = Cost::with('origin', 'destination','commodity')->orderBy('created_at','desc')->get();
       return view('pages.cost', [

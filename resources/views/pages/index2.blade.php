@@ -78,7 +78,7 @@
                     </div>
                 </div>
                 <div class="col col-md-6">
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <label for="input5" class="col-sm-3 col-form-label">Berat Barang</label>
                         <div class="col-sm-9">
                             <div class="input-group">
@@ -86,7 +86,7 @@
                                 <span class="input-group-addon" id="basic-addon2">Kg</span>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group row">
                         <label for="input6" class="col-sm-3 col-form-label">Metode Pembayaran</label>
                         <div class="col-sm-9">
@@ -98,12 +98,16 @@
                             <option value="{{ $option->id }}">{{ $option->display_name }}</option>
                                 @endforeach
                             </select>--}}
+                            <input type="hidden" id="input5" name="weight" value="{{ $data['weight'] }}">
                             @foreach ($options['payment_methods'] as $option) 
-                                <div class="radio"
-                                    <label><input type="radio" name="payment_method[]" value="{{ $option->id }}">{{$option->display_name}}</label>
-                                    @if ($option->name != 'cash')
-                                    <img src="{{url('img/bni.jpg')}}" style="width: 50px">
-                                    @endif
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="payment_method[]" value="{{ $option->id }}">
+                                        @if ($option->name != 'cash')
+                                            <img src="{{url('img/bni.jpg')}}" style="width: 50px">
+                                        @endif
+                                        {{$option->display_name}}
+                                    </label>
                                 </div>
                             @endforeach
                         </div>
