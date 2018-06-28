@@ -43,7 +43,7 @@
                                         <td>{{ $i++ }}</td>
                                         <td>{{ $data->type }}</td>
                                         <td>
-                                            {{-- <button type="button" class="btn btn-info btn-sm btn-show" data-id="{{ $data->id }}" data-toggle="modal" data-target=".bs-example-modal-lg">Edit</button> --}}
+                                            <button type="button" class="btn btn-info btn-sm btn-show" data-id="{{ $data->id }}" data-toggle="modal" data-target=".bs-example-modal-lg">Edit</button>
                                             <form action="{{ route('comoditytype.destroy', $data->id) }}" method="post" style="display:inline">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
@@ -89,16 +89,13 @@
         let self = $(this);
         let id   = self.data('id');
         let url  = document.head.querySelector('meta[name="app-url"]').content;
-        let url_form = url+'/app/master/destination/'+id;
+        let url_form = url+'/app/master/commodity-type/'+id;
         
-        axios.get(`${url}/app/master/destination/${id}`).then(function (response) {
-            let destination = response.data
+        axios.get(`${url}/app/master/commodity-type/${id}`).then(function (response) {
+            let data = response.data
             let i = 1
-            
-            $("#code").val(destination[0].code);
-            $("#nama").val(destination[0].name);
-            $("#provinsi").val(destination[0].province);
-            $("#estimate").val(destination[0].estimate);
+
+            $("#type").val(data[0].type);
             $("#url_form").attr("action",url_form);
             
             

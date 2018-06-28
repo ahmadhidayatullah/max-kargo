@@ -99,14 +99,10 @@ class CommodityTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $destionation =  Destination::find($id);
+        $data =  CommodityType::find($id);
 
-        $destionation->code = $request->code;
-        $destionation->name = $request->name;
-        $destionation->province = $request->province;
-        $destionation->estimate = $request->estimate;
-
-        if ($destionation->save()) {
+        $data->type = $request->type;
+        if ($data->save()) {
           return redirect()->route('comoditytype.index')->with('message', format_message('Success update data !','success'));
         }else {
           return redirect()->route('comoditytype.index')->with('message', format_message('Failed update data !','danger'));

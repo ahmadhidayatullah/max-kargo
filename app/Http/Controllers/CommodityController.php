@@ -114,9 +114,10 @@ class CommodityController extends Controller
      {
          $commodity =  Commodity::find($id);
 
-         $commodity->code       = $request->code;
-         $commodity->name       = $request->name;
-         $commodity->keterangan = $request->keterangan;
+         $commodity->code                     = $request->code;
+         $commodity->commodity_type_id        = $request->commodity_type_id;
+         $commodity->name                     = $request->name;
+         $commodity->keterangan               = $request->keterangan;
 
          if ($commodity->save()) {
            return redirect()->route('commodities.index')->with('message', format_message('Success update data !','success'));
