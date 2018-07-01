@@ -156,11 +156,12 @@ class CostController extends Controller
         ->withInput()
         ->with('message', format_message('Gagal Input !','danger'));
       }
-
+      
       $cost = Cost::find($id);
       $cost->origin_id        = $request->origin_id;
       $cost->destination_id  = $request->destination_id;
       $cost->commodity_id     = $request->commodity_id;
+      $cost->commodity_type_id     = $request->commodity_type_id;
       $price = [
         'minimal'   => $request->minimal,
         'nominal'   => $request->nominal,

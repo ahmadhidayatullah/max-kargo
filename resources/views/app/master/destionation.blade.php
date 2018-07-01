@@ -73,7 +73,7 @@
 <script type="text/javascript">
     $('#datatables').DataTable();
     
-    $(".btn-delete").click(function () {
+    $("#datatables").on("click", ".btn-delete", function() {
         swal({
             title: 'Apakah kamu yakin untuk menghapus data ini ?',
             type: 'warning',
@@ -88,7 +88,7 @@
         });
     });
     
-    $(".btn-show").click(function () {
+    $("#datatables").on("click", ".btn-show", function() {
         $("#isLoading").show();
         $("#viewResults").hide();
         

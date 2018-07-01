@@ -34,6 +34,7 @@
                                         <tr>
                                             <th>No. </th>
                                             <th>Commodity</th>
+                                            <th>Type</th>
                                             <th>From</th>
                                             <th>TO</th>
                                             <th>Minimal (Rp)</th>
@@ -48,6 +49,7 @@
                                             <tr>
                                                 <td>{{ $i++ }}</td>
                                                 <td>{{ $cost->commodity->name }}</td>
+                                                <td>{{ $cost->commodity_type->type }}</td>
                                                 <td>{{ $cost->origin->name }}</td>
                                                 <td>{{ $cost->destination->name }}</td>
                                                 <td>{{ $cost->price['minimal'] }}</td>
@@ -79,7 +81,7 @@
   <script type="text/javascript">
       $('#datatables').DataTable();
 
-      $(".btn-delete").click(function () {
+      $("#datatables").on("click", ".btn-delete", function() {
           swal({
               title: 'Apakah kamu yakin untuk menghapus data ini ?',
               type: 'warning',
@@ -94,7 +96,7 @@
           });
       });
 
-      $(".btn-show").click(function () {
+      $("#datatables").on("click", ".btn-show", function() {
           $("#isLoading").show();
           $("#viewResults").hide();
 

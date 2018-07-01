@@ -30,6 +30,11 @@ class Cost extends Model
     {
         return $this->belongsTo('App\Models\Commodity');
     }
+
+    public function commodity_type()
+    {
+        return $this->belongsTo('App\Models\CommodityType');
+    }
     
     public function tasks()
     {
