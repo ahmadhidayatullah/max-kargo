@@ -109,6 +109,9 @@
                 </div>
                 <div class="col-md-6 pull-right">
                   <table style="margin-right:30px">
+                      <tr>
+                  <td>Timika, {{convert_to_tanggal(date("Y-m-d"))}}</td>
+              </tr>
                     <tr>
                       <td>Pemilik Usaha</td>
                     </tr>

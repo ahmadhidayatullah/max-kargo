@@ -107,8 +107,8 @@ class ReportController extends Controller
     public function print_order($type,$tanggal_mulai,$tanggal_sampai)
     {
 
-      $this->tgl_mulai  = $request->tanggal_mulai.' 00:00:00';
-      $this->tgl_sampai = $request->tanggal_sampai.' 23:59:59';
+      $this->tgl_mulai  = $tanggal_mulai.' 00:00:00';
+      $this->tgl_sampai = $tanggal_sampai.' 23:59:59';
 
       if ($type=='masuk') {
 
