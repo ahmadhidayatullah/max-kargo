@@ -3,7 +3,14 @@
 use App\Models\Task;
 use App\Models\Status;
 use App\Models\PaymentMethod;
+use App\Models\Setting;
 
+if (!function_exists('setting_website')) {
+  function setting_website()
+  {
+    return Setting::where('id',1)->first();
+  }
+}
 if (!function_exists('set_active')) {
   function set_active($uri, $output = 'active')
   {

@@ -110,7 +110,7 @@
                 <div class="col-md-6 pull-right">
                   <table style="margin-right:30px">
                       <tr>
-                  <td>Timika, {{convert_to_tanggal(date("Y-m-d"))}}</td>
+                  <td>{{ucwords(setting_website()->tempat)}}, {{convert_to_tanggal(date("Y-m-d"))}}</td>
               </tr>
                     <tr>
                       <td>Pemilik Usaha</td>
@@ -124,7 +124,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <td><strong>Max Royzer</strong></td>
+                      <td><strong>{{ucwords(setting_website()->nama)}}</strong></td>
                     </tr>
                   </table>
                 </div>
