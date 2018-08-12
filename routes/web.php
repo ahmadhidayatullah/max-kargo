@@ -45,6 +45,16 @@ Route::view('test', 'test', [
 
 Route::prefix('app')->middleware(['auth'])->group(function () {
 
+    Route::prefix('settings')->group(function () {
+        Route::get('/', 'SettingController@index')->name('setting.index');
+        Route::get('/{id}', 'SettingController@edit')->name('setting.edit');
+        Route::put('/{id}', 'SettingController@update')->name('setting.update');
+        // Route::put('/{id}', 'TaskController@update')->name('tasks.update');
+        // Route::post('/{id}', 'TaskController@update_weight')->name('tasks.update_weight');
+        // Route::delete('/{id}', 'TaskController@destroy')->name('tasks.destroy');
+        // Route::get('/email/send', 'TaskController@email')->name('tasks.email');
+    });
+
     Route::get('/', 'AppController@dashboard')->name('app.dashboard');
 
     Route::prefix('tasks')->group(function () {

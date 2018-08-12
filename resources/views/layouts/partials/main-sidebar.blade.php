@@ -21,6 +21,12 @@
             <div class="collapse {{ set_active('origin.index', 'in') }}" id="deliveryOverview2">
                 <ul class="nav">
                     <li class="">
+                        <a href="{{route('setting.index')}}">
+                            <span class="sidebar-mini">$</span>
+                            <span class="sidebar-normal">Website</span>
+                        </a>
+                    </li>
+                    <li class="">
                         <a href="{{route('charges.index')}}">
                             <span class="sidebar-mini">$</span>
                             <span class="sidebar-normal">Charge</span>
